@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class TestPlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Adjust this to control the movement speed
 
@@ -27,4 +27,3 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = movement * moveSpeed;
     }
 }
-
