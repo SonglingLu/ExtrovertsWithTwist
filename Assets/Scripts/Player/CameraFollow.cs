@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
-    public GameObject drawingPanel;
+    public GameObject player;
+    private Vector3 offset = new Vector3(0, 0, -10);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,10 +16,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    public void drawToolsOnClick()
-    {
-        drawingPanel.SetActive(!drawingPanel.activeInHierarchy);
+        transform.position = player.transform.position + offset;
     }
 }
