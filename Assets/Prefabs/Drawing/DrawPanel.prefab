@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 4273948073239561281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.16, y: 0.0078, z: 10}
+  m_LocalPosition: {x: 12, y: 0, z: 10}
   m_LocalScale: {x: 4.5, y: 6.4644055, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -268,7 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e474aceae6ca44169a5f3eeb6f2f6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Line: {fileID: 8032301434733879067, guid: f941cb5772a4a453f95babeaf6780170, type: 3}
+  drawPoint: {fileID: 0}
+  Player: {fileID: 0}
   ToolPlaceHolder: {fileID: 0}
 --- !u!61 &7449183333378169295
 BoxCollider2D:
