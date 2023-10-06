@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class MainMenu : MonoBehaviour
+public class MainMenuButtonControl : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject levelSelection;

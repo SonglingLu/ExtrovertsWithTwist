@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GhostCollide : MonoBehaviour
 {
+    public GameObject finishScreen;
+    public GameObject loseText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,8 @@ public class GhostCollide : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("you lose");
+            finishScreen.SetActive(true);
+            loseText.SetActive(true);
         }
     }
 }
