@@ -957,7 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a8503ef4bda434988aaffd92073dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawingPanel: {fileID: 0}
+  drawingPanel: {fileID: 1235606978}
 --- !u!50 &1885167682
 Rigidbody2D:
   serializedVersion: 4
