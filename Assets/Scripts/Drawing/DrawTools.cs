@@ -42,7 +42,7 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         //drawing = StartCoroutine(DrawLine());
 
         toolParent = new GameObject();
-        toolParent.AddComponent<DestroySelf>();
+        
         toolParent.transform.position = transform.position;
         canDraw = true;
     }
@@ -62,7 +62,13 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         toolParent.transform.localPosition = new Vector3(0, 0, 0);
         toolParent.transform.rotation = Player.transform.rotation;
 
+        foreach (Transform child in toolParent.transform)
+        {
+            child.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        }
+
         toolParent.tag = "Player";
+        toolParent.AddComponent<DestroySelf>();
 
         StartCoroutine(DisableSelf());
 
