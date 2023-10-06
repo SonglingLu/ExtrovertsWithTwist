@@ -62,6 +62,8 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         toolParent.transform.localPosition = new Vector3(0, 0, 0);
         toolParent.transform.rotation = Player.transform.rotation;
 
+        toolParent.tag = "Player";
+
         StartCoroutine(DisableSelf());
 
 
