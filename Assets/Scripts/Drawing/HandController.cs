@@ -19,14 +19,13 @@ public class HandController : MonoBehaviour
     {
         if (isMouseDragging)
         {
-            // Get the current mouse position in world coordinates
-            Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offsetToMouse;
-            newPosition.z = 0; // Make sure the z-coordinate is 0 for 2D.
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offsetToMouse;
+            mousePosition.z = transform.position.z;
+            Vector3 direction = mousePosition - transform.parent.parent.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            // Move the tipOfHand to the new position
-            transform.position = newPosition;
 
-            transform.rotation = Quaternion.identity;
+            transform.parent.rotation = Quaternion.RotateTowards(transform.parent.rotation, Quaternion.Euler(0, 0, angle), 2000 * Time.deltaTime);
         }
     }
 

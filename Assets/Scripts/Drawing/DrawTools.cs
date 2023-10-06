@@ -6,117 +6,97 @@ using UnityEngine.EventSystems;
 public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     Coroutine drawing;
-    public GameObject Line;
-
+    public GameObject drawPoint, Player;
+    GameObject toolParent;
     public SpriteRenderer ToolPlaceHolder;
 
+    bool canDraw = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
+    Vector3 mousePosition;
+    Coroutine spawnCoroutine;
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        
+        if (canDraw)
+        {
+            if (spawnCoroutine == null)
+            {
+                spawnCoroutine = StartCoroutine(SpawnSprites());
+            }
+
+        }
     }
 
     void StartLine()
     {
-        if (drawing != null)
-        {
-            StopCoroutine(drawing);
-        }
-        drawing = StartCoroutine(DrawLine());
+        //if (drawing != null)
+        //{
+        //    StopCoroutine(drawing);
+        //}
+        //drawing = StartCoroutine(DrawLine());
+
+        toolParent = new GameObject();
+        toolParent.AddComponent<DestroySelf>();
+        toolParent.transform.position = transform.position;
+        canDraw = true;
     }
 
     void FinishLine()
     {
-            if (drawing != null)
-            {
-                StopCoroutine(drawing);
+        canDraw = false;
 
-            // Calculate the scaling factor
-            float scaleX = ToolPlaceHolder.bounds.size.x / transform.GetComponent<SpriteRenderer>().bounds.size.x;
-            float scaleY = ToolPlaceHolder.bounds.size.y / transform.GetComponent<SpriteRenderer>().bounds.size.y;
-            
-            // Use the minimum of scaleX and scaleY to maintain the aspect ratio
-            float minScale = Mathf.Min(scaleX, scaleY);
-
-            Vector3[] linePositions = new Vector3[lineObject.GetComponent<LineRenderer>().positionCount];
-            lineObject.GetComponent<LineRenderer>().GetPositions(linePositions);
-
-            for (int i = 0; i < linePositions.Length; i++)
-            {
-                linePositions[i] = new Vector3(linePositions[i].x * scaleX, linePositions[i].y * scaleY, linePositions[i].z);
-            }
-
-            lineObject.GetComponent<LineRenderer>().SetPositions(linePositions);
-            lineObject.GetComponent<ChangePosition>().SetRelativePositions();
-
-            lineObject.transform.SetParent(ToolPlaceHolder.transform);
-                lineObject.transform.localPosition = new Vector3(0, 0, 0);
-
-               // Add a PolygonCollider2D component
-               PolygonCollider2D collider = lineObject.AddComponent<PolygonCollider2D>();
+        // Calculate the scaling factor
+        float scaleX = ToolPlaceHolder.bounds.size.x / transform.GetComponent<SpriteRenderer>().bounds.size.x;
+        float scaleY = ToolPlaceHolder.bounds.size.y / transform.GetComponent<SpriteRenderer>().bounds.size.y;
 
 
-                // Get points from the LineRenderer
-                Vector2[] points = new Vector2[lineRendererAdded.positionCount];
-                for (int i = 0; i < lineRendererAdded.positionCount; i++)
-                {
-                    points[i] = lineRendererAdded.GetPosition(i);
-                }
-                // Set the points for the PolygonCollider2D
-                collider.points = points;
+        toolParent.transform.localScale = new Vector3(scaleX, scaleY, 0);
+        toolParent.transform.parent = ToolPlaceHolder.transform;
 
-                Material material = lineRendererAdded.material;
+        toolParent.transform.localPosition = new Vector3(0, 0, 0);
+        toolParent.transform.rotation = Player.transform.rotation;
 
-                // Ensure the material is set to a "Sprites/Default" shader
-                // This is a common shader used for LineRenderer materials
-                material.shader = Shader.Find("Sprites/Default");
+        StartCoroutine(DisableSelf());
 
-                
-                StartCoroutine(DisableSelf());
 
-                
-        }
+
 
     }
 
-    GameObject lineObject;
-    LineRenderer lineRendererAdded;
-    GameObject toolObject;
-    IEnumerator DrawLine()
+    private IEnumerator SpawnSprites()
     {
-       // toolObject = new GameObject("ParentObject");
-
-        lineObject = Instantiate(Line as GameObject, new Vector3(0, 0, 0), Quaternion.identity);
-
-       // lineObject.transform.SetParent(toolObject.transform);
-        lineRendererAdded = lineObject.GetComponent<LineRenderer>();
-        lineRendererAdded.positionCount = 0;
-
-        while (true)
+        while (canDraw)
         {
-            Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            position.z = 0;
-            lineRendererAdded.positionCount++;
-            lineRendererAdded.SetPosition(lineRendererAdded.positionCount - 1, position);
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0; // Set the z-coordinate to 0 to place the sprite in the 2D plane.
+
+
+            // Instantiate the sprite at the mouse position within the parent GameObject.
+            Instantiate(drawPoint, mousePosition, Quaternion.identity, toolParent.transform);
+
             yield return null;
         }
+
+        // Reset the coroutine when the mouse button is released.
+        spawnCoroutine = null;
     }
+
 
     IEnumerator DisableSelf()
     {
-       
+
 
         yield return new WaitForSeconds(0.1f);
+
         gameObject.transform.parent.gameObject.SetActive(false);
 
-       
+
     }
 
 
