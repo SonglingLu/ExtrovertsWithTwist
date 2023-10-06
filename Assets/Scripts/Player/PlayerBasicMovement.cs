@@ -8,7 +8,7 @@ public class PlayerBasicMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float speed = 5f;
-    private float rotationSpeed = 180f;
+    private float rotationSpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +28,14 @@ public class PlayerBasicMovement : MonoBehaviour
 
         transform.Translate(movementDirection * Time.deltaTime * speed * inputMagnitude, Space.World);
 
-        if (movementDirection != Vector2.zero)
+        if (Input.GetKey(KeyCode.E))
         {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, movementDirection);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            transform.Rotate(Vector3.back, Time.deltaTime * rotationSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(Vector3.forward, Time.deltaTime * rotationSpeed);
         }
     }
 }

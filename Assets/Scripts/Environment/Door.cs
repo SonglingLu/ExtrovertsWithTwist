@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public GameObject finshScreen;
+    public GameObject win;
     private bool isUnlocked = false;
     SpriteRenderer sprite;
+
     private void Start()
     {
 
@@ -25,6 +28,8 @@ public class Door : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && isUnlocked)
         {
             Debug.Log("you win");
+            finshScreen.SetActive(true);
+            win.SetActive(true);
         }
     }
 }

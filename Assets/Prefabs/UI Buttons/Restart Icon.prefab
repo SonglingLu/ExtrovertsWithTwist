@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 7731850141184083759}
   - component: {fileID: 7622077117026914681}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: Restart Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
