@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LineCraft : MonoBehaviour
+public class DrawBarrier : MonoBehaviour
 {
     public GameObject lineprefab; // The prefab for the line
     private float lineDuration = 5f; // The duration of the line
@@ -10,29 +11,36 @@ public class LineCraft : MonoBehaviour
     private LineRenderer linerenderer; // LineRenderer component of the line object
     private EdgeCollider2D edgeCollider; // EdgeCollider2D component for collision
     private List<Vector2> FingerPositions; // List to store finger positions for the line
-    private float lineWidth = 0.1f; // Width of the line
+    private float lineWidth = 0.2f; // Width of the line
+
+    private Toggle DrawBarrierToggle;
 
     void Start()
     {
         // Initialize the list to store finger positions
         FingerPositions = new List<Vector2>();
+
+        DrawBarrierToggle = gameObject.GetComponent<Toggle>();
     }
 
     void Update()
     {
-        // Check for mouse button press to start drawing a line
-        if (Input.GetMouseButtonDown(0))
-        {
-            CreateLine();
-        }
-        // Check for mouse button hold to continue drawing the line
-        if (Input.GetMouseButton(0))
-        {
-            Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // Check if the finger has moved far enough to add a new point to the line
-            if (Vector2.Distance(temFingerPos, FingerPositions[FingerPositions.Count - 1]) > 0.1f)
+        // check if button is on
+        if (DrawBarrierToggle.isOn) {
+            // Check for mouse button press to start drawing a line
+            if (Input.GetMouseButtonDown(0))
             {
-                UpdateLine(temFingerPos);
+                CreateLine();
+            }
+            // Check for mouse button hold to continue drawing the line
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                // Check if the finger has moved far enough to add a new point to the line
+                if (Vector2.Distance(temFingerPos, FingerPositions[FingerPositions.Count - 1]) > 0.1f)
+                {
+                    UpdateLine(temFingerPos);
+                }
             }
         }
     }
