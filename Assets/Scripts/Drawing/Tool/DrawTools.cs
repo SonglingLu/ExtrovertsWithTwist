@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -9,17 +10,20 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject drawPoint, Player;
     GameObject toolParent;
     public SpriteRenderer ToolPlaceHolder;
+    public GameObject DrawToolButton;
+    private Toggle DrawToolToggle;
 
     bool canDraw = false;
+
+    Vector3 mousePosition;
+    Coroutine spawnCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        DrawToolToggle = DrawToolButton.GetComponent<Toggle>();
     }
-    Vector3 mousePosition;
-    Coroutine spawnCoroutine;
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -103,6 +107,7 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         yield return new WaitForSeconds(0.1f);
 
         gameObject.transform.parent.gameObject.SetActive(false);
+        DrawToolToggle.isOn = false;
 
 
     }

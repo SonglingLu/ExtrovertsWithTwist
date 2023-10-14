@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2176459316160748475}
   - component: {fileID: -2017988345051916801}
   m_Layer: 0
-  m_Name: Line
+  m_Name: Barrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
