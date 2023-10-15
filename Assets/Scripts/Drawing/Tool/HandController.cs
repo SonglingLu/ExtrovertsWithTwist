@@ -1,36 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.EventSystems;
 
-public class HandController : MonoBehaviour
+public class HandController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
-    private bool isMouseDragging = false;
+    public bool buttonPressed;
+    
     private Vector3 offsetToMouse;
+    public GameObject LeftArmSolver, RightArmSolver;
 
-    void OnMouseDown()
+    Vector3 defaltpositionLeft, defaltpositionRight;
+    public void OnPointerDown(PointerEventData eventData)
     {
-        // Calculate the offset between the tipOfHand and the mouse position
-        offsetToMouse = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        isMouseDragging = true;
+        
+        defaltpositionLeft = LeftArmSolver.transform.localPosition;
+        defaltpositionRight = RightArmSolver.transform.localPosition;
+        buttonPressed = true;
     }
 
-    void OnMouseDrag()
+    public void OnPointerUp(PointerEventData eventData)
     {
-        if (isMouseDragging)
+        buttonPressed = false;
+        ResetHandPos();
+    }
+
+    private void Update()
+    {
+        if (buttonPressed)
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offsetToMouse;
-            mousePosition.z = transform.position.z;
-            Vector3 direction = mousePosition - transform.parent.parent.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-
-            transform.parent.rotation = Quaternion.RotateTowards(transform.parent.rotation, Quaternion.Euler(0, 0, angle), 2000 * Time.deltaTime);
+            
+            
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+           
+            RightArmSolver.transform.position = mousePosition;
+            
         }
     }
-
-    void OnMouseUp()
+    public void ResetHandPos()
     {
-        isMouseDragging = false;
+        LeftArmSolver.transform.localPosition = defaltpositionLeft;
+
+        RightArmSolver.transform.localPosition = defaltpositionRight;
     }
 }

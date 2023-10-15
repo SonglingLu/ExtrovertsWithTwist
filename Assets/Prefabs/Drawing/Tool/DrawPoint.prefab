@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3328675672161836904}
   - component: {fileID: 5817111250918766211}
   - component: {fileID: 7070873368270785333}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: DrawPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.3490566, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
