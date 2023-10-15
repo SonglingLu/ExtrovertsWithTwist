@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
 
+
 public class PlayerBasicMovement : MonoBehaviour
 {
     private float horizontalInput;
@@ -59,5 +60,17 @@ public class PlayerBasicMovement : MonoBehaviour
             }
         }
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Step2Collider")
+        {
+            TutorialManager myScriptInstance = FindObjectOfType<TutorialManager>();
+            if (myScriptInstance != null)
+            {
+                myScriptInstance.LoadNextStep();
+            }
+        }
     }
 }
