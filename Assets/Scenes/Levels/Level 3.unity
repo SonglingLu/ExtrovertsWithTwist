@@ -655,6 +655,10 @@ PrefabInstance:
       propertyPath: drawingPanel
       value: 
       objectReference: {fileID: 522579066}
+    - target: {fileID: 4275891858476719570, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5135413857621075315, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
       propertyPath: m_Name
       value: UI
@@ -752,6 +756,11 @@ GameObject:
 --- !u!1 &116464123 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3470675735518555910, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+  m_PrefabInstance: {fileID: 116464121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &116464124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 119565279568828653, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
   m_PrefabInstance: {fileID: 116464121}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &131949741
@@ -3730,6 +3739,10 @@ PrefabInstance:
       propertyPath: drawPoint
       value: 
       objectReference: {fileID: 2238729969815056504, guid: 67ce999aa988c45f08d59ebccfe2b9c6, type: 3}
+    - target: {fileID: 2539450975153828279, guid: 1295e29d48cbe4c149e033740a322b41, type: 3}
+      propertyPath: DrawToolButton
+      value: 
+      objectReference: {fileID: 116464124}
     - target: {fileID: 2539450975153828279, guid: 1295e29d48cbe4c149e033740a322b41, type: 3}
       propertyPath: ToolPlaceHolder
       value: 
