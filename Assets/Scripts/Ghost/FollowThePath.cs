@@ -16,15 +16,23 @@ public class FollowThePath : MonoBehaviour
 
     private void Update()
     {
-        Move();
+         Move();
+        lastPosition = transform.position;
+       
     }
-
+ Vector3 lastPosition;
     private void Move()
     {
         if (waypointIndex < waypoints.Length)
         {
             float step = moveSpeed * Time.deltaTime;
             transform.position = Vector2.MoveTowards(transform.position, waypoints[waypointIndex].position, step);
+
+            Vector3 diff = transform.position - lastPosition;
+                    diff.Normalize();          
+                    float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;         
+                    transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+
 
             if (Vector2.Distance(transform.position, waypoints[waypointIndex].position) < 0.01f)
             {
