@@ -16,7 +16,7 @@ public class Button : MonoBehaviour
         // Check if the collision involves the "Player" tag
         if (collision.gameObject.CompareTag("Player"))
         {
-            GetComponent<Renderer>().material.color = Color.green;
+            GetComponent<SpriteRenderer>().color = Color.green;
 
             // Perform your action on the "Door" here
             Door door = FindObjectOfType<Door>(); // Find the "Door" object

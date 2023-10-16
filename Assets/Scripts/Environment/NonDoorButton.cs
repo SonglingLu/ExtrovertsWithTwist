@@ -19,7 +19,7 @@ public class NonDoorButton : MonoBehaviour
 
             if (obstacle != null)
             {
-                Debug.Log("obstacle remove called");
+                // Debug.Log("obstacle remove called");
                 obstacle.Open(); // Call a method on the "Door" script to perform the action
             }
         }

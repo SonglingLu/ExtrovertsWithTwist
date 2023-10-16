@@ -22,7 +22,7 @@ public class GhostCollide : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Check if the collision involves the "Player" tag
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !finishScreen.activeSelf)
         {
             finishScreen.SetActive(true);
             loseText.SetActive(true);
