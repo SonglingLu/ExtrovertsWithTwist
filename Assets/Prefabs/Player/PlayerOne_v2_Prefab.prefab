@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4885994127897535076}
   m_Layer: 0
   m_Name: PlaceHolder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2112699102317094097}
   m_Layer: 0
   m_Name: RighArmSolver
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 306173684346212397}
   m_Layer: 0
   m_Name: RighArmSolver_Target
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 3606292586905828427}
   m_Layer: 0
   m_Name: RightEffector
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 2945366194743727677}
   m_Layer: 5
   m_Name: HandClick
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 6143744196031617028}
   m_Layer: 0
   m_Name: LeftArmSolver_Target
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 2621619960387180079}
   m_Layer: 0
   m_Name: LeftEye
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 3201506952097295706}
   m_Layer: 0
   m_Name: LeftArmSolver
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 8296668486042238878}
   m_Layer: 0
   m_Name: RightEye
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 6633381541545202830}
   m_Layer: 5
   m_Name: PlayerBodyCanvas
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 8262956249567689706}
   m_Layer: 0
   m_Name: LeftEffector
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,6 +756,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftLowerArm
       objectReference: {fileID: 0}
+    - target: {fileID: -9020019592537599429, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_Name
       value: PlayerOne_v2_Prefab
@@ -767,6 +771,10 @@ PrefabInstance:
     - target: {fileID: -7977632263685087581, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_Name
       value: RightUpperArm
+      objectReference: {fileID: 0}
+    - target: {fileID: -7977632263685087581, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_LocalScale.x
@@ -832,6 +840,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.5305129
       objectReference: {fileID: 0}
+    - target: {fileID: -6190081241417897260, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -6136588298945410077, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.19150385
@@ -839,6 +851,18 @@ PrefabInstance:
     - target: {fileID: -6136588298945410077, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.9814919
+      objectReference: {fileID: 0}
+    - target: {fileID: -3639017150392385709, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -3299097451646276498, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: -1094425708945703365, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: -345675984865906027, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_LocalRotation.w
@@ -864,6 +888,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftUpperArm
       objectReference: {fileID: 0}
+    - target: {fileID: 856469840599174083, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055864530524160739, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2403287244421603068, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.18990983
@@ -880,9 +912,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5106267018585418444, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5912594304587165374, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       propertyPath: m_Name
       value: RightLowerArm
+      objectReference: {fileID: 0}
+    - target: {fileID: 5912594304587165374, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -915,9 +955,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1109672844149273956}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 727767332511779689}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: a796ce8682f5f400ba90ffd05412d194, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5217673730652908513}
@@ -1126,19 +1163,6 @@ MonoBehaviour:
     showGizmo: 1
   - color: {r: 0, g: 1, b: 0, a: 1}
     showGizmo: 1
---- !u!114 &727767332511779689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6466520473046919295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a8503ef4bda434988aaffd92073dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawingPanel: {fileID: 0}
 --- !u!114 &5217673730652908513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,7 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78306f04300e74f32b0328472971214a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateInDirection: 1
+  RotateInDirection: 0
 --- !u!50 &6039212799855584728
 Rigidbody2D:
   serializedVersion: 4

@@ -20,7 +20,7 @@ public class FollowThePath : MonoBehaviour
         lastPosition = transform.position;
        
     }
- Vector3 lastPosition;
+    Vector3 lastPosition;
     private void Move()
     {
         if (waypointIndex < waypoints.Length)
