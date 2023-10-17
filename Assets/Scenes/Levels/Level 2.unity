@@ -788,6 +788,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[7]
       value: 
       objectReference: {fileID: 1704017217}
+    - target: {fileID: 8796346448207737233, guid: 4b02d5831d423428ebd313130a407ba2, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1148373015}
     m_RemovedComponents:
     - {fileID: 4112804907375378074, guid: 4b02d5831d423428ebd313130a407ba2, type: 3}
     - {fileID: 2922937782938961261, guid: 4b02d5831d423428ebd313130a407ba2, type: 3}
@@ -2485,6 +2489,11 @@ GameObject:
 --- !u!212 &1148373014 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4885994127897535076, guid: d4f96beea6189411e883229d04753d68, type: 3}
+  m_PrefabInstance: {fileID: 1148373012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1148373015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5293325843199422492, guid: d4f96beea6189411e883229d04753d68, type: 3}
   m_PrefabInstance: {fileID: 1148373012}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1171429490 stripped
