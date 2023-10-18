@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -8,9 +9,11 @@ public class Door : MonoBehaviour
     public GameObject win;
     private bool isUnlocked = false;
 
+    private string level;
+
     private void Start()
     {
-
+        level = SceneManager.GetActiveScene().name;
     }
 
     // Method to open or close the door
@@ -29,6 +32,7 @@ public class Door : MonoBehaviour
             // Debug.Log("you win");
             finshScreen.SetActive(true);
             win.SetActive(true);
+            GlobalVariables.unlockLevel(level);
         }
     }
 }

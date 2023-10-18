@@ -3,7 +3,8 @@
 public class FollowThePath : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
-    [SerializeField] private float moveSpeed = 2f;
+    private Rigidbody2D ghostRB;
+    private float moveSpeed = 4f;
     private int waypointIndex = 0;
 
     private void Start()
@@ -12,11 +13,13 @@ public class FollowThePath : MonoBehaviour
         {
             transform.position = waypoints[waypointIndex].position;
         }
+
+        ghostRB = transform.GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-         Move();
+        Move();
         lastPosition = transform.position;
        
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GhostChase : MonoBehaviour { 
 
     public Transform player;
-    public float chaseSpeed = 3.0f;
+    private float chaseSpeed = 4f;
     private bool isChasing = false;
     private FollowThePath followThePath;
     private Rigidbody2D rigidbody2D;

@@ -33,7 +33,7 @@ public class DrawBarrier : MonoBehaviour
                 CreateLine();
             }
             // Check for mouse button hold to continue drawing the line
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0)) 
             {
                 Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Check if the finger has moved far enough to add a new point to the line
