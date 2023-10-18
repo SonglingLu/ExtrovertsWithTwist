@@ -42,4 +42,14 @@ public static class GlobalVariables
     public static void unlockLevel(string level) {
         levelStatus[level] = true;
     }
+
+    private static bool playerMovable = true;
+
+    public static bool getPlayerMovable() {
+        return playerMovable;
+    }
+
+    public static void setPlayerMovable(bool movable) {
+        playerMovable = movable;
+    }
 }

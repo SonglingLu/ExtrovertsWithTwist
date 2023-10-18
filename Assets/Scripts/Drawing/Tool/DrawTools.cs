@@ -80,8 +80,6 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         toolParent.AddComponent<DestroySelf>();
 
         StartCoroutine(DisableSelf());
-
-
     }
 
     private IEnumerator SpawnSprites()
@@ -110,12 +108,10 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     IEnumerator DisableSelf()
     {
 
-
         yield return new WaitForSeconds(0.1f);
 
         gameObject.transform.parent.gameObject.SetActive(false);
         DrawToolToggle.isOn = false;
-
 
     }
 
@@ -123,12 +119,14 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        GlobalVariables.setPlayerMovable(false);
         StartLine();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         FinishLine();
+        GlobalVariables.setPlayerMovable(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -26,5 +26,6 @@ public class NextLevel : MonoBehaviour
     public void LoadNextLevel()
     {
         SceneManager.LoadScene(nextLevel);
+        GlobalVariables.setPlayerMovable(true);
     }
 }

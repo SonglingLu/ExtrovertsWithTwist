@@ -32,6 +32,7 @@ public class Door : MonoBehaviour
             // Debug.Log("you win");
             finshScreen.SetActive(true);
             win.SetActive(true);
+            GlobalVariables.setPlayerMovable(false);
             GlobalVariables.unlockLevel(level);
         }
     }

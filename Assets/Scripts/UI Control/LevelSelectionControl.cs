@@ -9,5 +9,6 @@ public class LevelSelection : MonoBehaviour
 
     public void SelectLevel() {
         SceneManager.LoadScene("Level " + level.ToString());
+        GlobalVariables.setPlayerMovable(true);
     }
 }

@@ -26,6 +26,7 @@ public class GhostCollide : MonoBehaviour
         {
             finishScreen.SetActive(true);
             loseText.SetActive(true);
+            GlobalVariables.setPlayerMovable(false);
         }
     }
 }

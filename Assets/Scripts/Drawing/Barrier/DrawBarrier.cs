@@ -15,6 +15,8 @@ public class DrawBarrier : MonoBehaviour
 
     private Toggle DrawBarrierToggle;
 
+    private bool drawing = false;
+
     void Start()
     {
         // Initialize the list to store finger positions
@@ -31,6 +33,7 @@ public class DrawBarrier : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 CreateLine();
+                drawing = true;
             }
             // Check for mouse button hold to continue drawing the line
             if (Input.GetMouseButton(0)) 
@@ -42,6 +45,14 @@ public class DrawBarrier : MonoBehaviour
                     UpdateLine(temFingerPos);
                 }
             }
+            if (drawing == true && Input.GetMouseButtonUp(0)) {
+                edgeCollider.enabled = true;
+                DrawBarrierToggle.isOn = false;
+                drawing = false;
+
+                // Start a coroutine to destroy the line after a specified duration
+                StartCoroutine(DestroyLineDelayed(currentLine, lineDuration));
+            }
         }
     }
 
@@ -50,13 +61,11 @@ public class DrawBarrier : MonoBehaviour
         // Instantiate a new line object using the provided prefab
         currentLine = Instantiate(lineprefab, Vector3.zero, Quaternion.identity);
 
-        // Start a coroutine to destroy the line after a specified duration
-        StartCoroutine(DestroyLineDelayed(currentLine, lineDuration));
-
         // Get LineRenderer and EdgeCollider2D components of the line object
         linerenderer = currentLine.GetComponent<LineRenderer>();
         edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
 
+        edgeCollider.enabled = false;
 
         // Set the edgeRadius of the EdgeCollider based on the line width
         edgeCollider.edgeRadius = lineWidth / 2;

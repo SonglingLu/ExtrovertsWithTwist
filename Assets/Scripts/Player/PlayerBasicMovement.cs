@@ -26,43 +26,45 @@ public class PlayerBasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-        movementDirection = new Vector2(horizontalInput, verticalInput).normalized;
-        inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
-        movementDirection.Normalize();
-
-        playerRB.velocity = movementDirection * speed * inputMagnitude;
-        // playerRB.MovePosition(new Vector2((transform.position.x + movementDirection.x * Time.deltaTime * speed),
-        //     (transform.position.y + movementDirection.y * Time.deltaTime * speed)));
-
-
-        if(RotateInDirection)
+        if (GlobalVariables.getPlayerMovable())
         {
-            // Rotate the player to face the movement direction
-            if (movementDirection != Vector2.zero)
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+
+            movementDirection = new Vector2(horizontalInput, verticalInput).normalized;
+            inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
+            movementDirection.Normalize();
+
+            playerRB.velocity = movementDirection * speed * inputMagnitude;
+            // playerRB.MovePosition(new Vector2((transform.position.x + movementDirection.x * Time.deltaTime * speed),
+            //     (transform.position.y + movementDirection.y * Time.deltaTime * speed)));
+
+
+            if(RotateInDirection)
             {
-                //float angle = Mathf.Atan2(movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
-               // transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
-                float targetAngle = Mathf.Atan2(-movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
-                float angle = Mathf.LerpAngle(transform.rotation.eulerAngles.z, targetAngle, rotationSpeedEQ * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(0, 0, angle);
+                // Rotate the player to face the movement direction
+                if (movementDirection != Vector2.zero)
+                {
+                    //float angle = Mathf.Atan2(movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
+                // transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
+                    float targetAngle = Mathf.Atan2(-movementDirection.x, movementDirection.y) * Mathf.Rad2Deg;
+                    float angle = Mathf.LerpAngle(transform.rotation.eulerAngles.z, targetAngle, rotationSpeedEQ * Time.deltaTime);
+                    transform.rotation = Quaternion.Euler(0, 0, angle);
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.E))
+                {
+                    transform.Rotate(Vector3.back, Time.deltaTime * rotationSpeedEQ);
+                }
+
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    transform.Rotate(Vector3.forward, Time.deltaTime * rotationSpeedEQ);
+                }
             }
         }
-        else
-        {
-            if (Input.GetKey(KeyCode.E))
-            {
-                transform.Rotate(Vector3.back, Time.deltaTime * rotationSpeedEQ);
-            }
-
-            if (Input.GetKey(KeyCode.Q))
-            {
-                transform.Rotate(Vector3.forward, Time.deltaTime * rotationSpeedEQ);
-            }
-        }
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
