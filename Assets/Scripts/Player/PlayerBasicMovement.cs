@@ -13,7 +13,10 @@ public class PlayerBasicMovement : MonoBehaviour
     private float rotationSpeedEQ = 100f;
     public bool RotateInDirection = false;
 
-    Rigidbody2D playerRB;
+    private Rigidbody2D playerRB;
+    private Vector2 movementDirection;
+    private float inputMagnitude;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +26,16 @@ public class PlayerBasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector2 movementDirection = new Vector2(horizontalInput, verticalInput);
-        float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
+        movementDirection = new Vector2(horizontalInput, verticalInput).normalized;
+        inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
         movementDirection.Normalize();
 
-        transform.Translate(movementDirection * Time.deltaTime * speed * inputMagnitude, Space.World);
-
-       
+        playerRB.velocity = movementDirection * speed * inputMagnitude;
+        // playerRB.MovePosition(new Vector2((transform.position.x + movementDirection.x * Time.deltaTime * speed),
+        //     (transform.position.y + movementDirection.y * Time.deltaTime * speed)));
 
 
         if(RotateInDirection)

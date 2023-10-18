@@ -15,12 +15,12 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        //transform.position = player.transform.position + offset;
+        transform.position = player.transform.position + offset;
 
-        Vector3 targetPosition = player.transform.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
-        transform.position = smoothedPosition;
+        //Vector3 targetPosition = player.transform.position + offset;
+        //Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+        //transform.position = smoothedPosition;
     }
 }
