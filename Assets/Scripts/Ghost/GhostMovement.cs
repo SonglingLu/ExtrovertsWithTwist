@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GhostMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GhostMovement : MonoBehaviour
     private int waypointIndex = 0;
     private Vector3 lastPosition;
     private bool chase;
+    private bool blindChase;
 
     [SerializeField] private Transform pfFieldOfView;
     private FieldOfView fieldOfView;
@@ -26,11 +28,14 @@ public class GhostMovement : MonoBehaviour
         fieldOfView = Instantiate(pfFieldOfView, null).GetComponent<FieldOfView>();
         fieldOfView.SetGhostMovement(this);
         fieldOfView.SetOrigin(transform.position);
+
+        chase = false;
+        blindChase = false;
     }
 
     private void Update()
     {
-        if (chase) {
+        if (chase || blindChase) {
             Chase();
         } else {
             Move();
@@ -51,16 +56,13 @@ public class GhostMovement : MonoBehaviour
     {
         if (waypointIndex < waypoints.Length)
         {
-            float step = moveSpeed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[waypointIndex].position, step);
+            Vector3 movementDirection = (waypoints[waypointIndex].position - transform.position).normalized;
+            ghostRB.velocity = movementDirection * moveSpeed ;
 
-            /* Vector3 diff = transform.position - lastPosition;
-                    diff.Normalize();          
-                    float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;         
-                    transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90); */
+            //float step = moveSpeed * Time.deltaTime;
+            //transform.position = Vector2.MoveTowards(transform.position, waypoints[waypointIndex].position, step);
 
-
-            if (Vector2.Distance(transform.position, waypoints[waypointIndex].position) < 0.01f)
+            if (Vector2.Distance(transform.position, waypoints[waypointIndex].position) < 0.05f)
             {
                 waypointIndex++;
                 if (waypointIndex >= waypoints.Length)
@@ -74,11 +76,23 @@ public class GhostMovement : MonoBehaviour
     private void Chase()
     {
         Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-        transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
+        
+        //transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
+        ghostRB.velocity = directionToPlayer * moveSpeed;
     }
 
     public void SetChase(bool chase) {
+        if (this.chase && !chase) {
+            StartCoroutine(ChaseWhileBlind());
+        }
+
         this.chase = chase;
+    }
+
+    IEnumerator ChaseWhileBlind() {
+        blindChase = true;
+        yield return new WaitForSeconds(3f);
+        blindChase = false;
     }
     
 }
