@@ -10,7 +10,7 @@ public class GhostChase : MonoBehaviour {
     public float chaseSpeed = 3.0f;
     private bool isChasing = false;
     private FollowThePath followThePath;
-    private Rigidbody2D rigidbody2D;
+    private new Rigidbody2D rigidbody2D;
 
     // public Transform visionConeSprite;
 
@@ -19,6 +19,8 @@ public class GhostChase : MonoBehaviour {
     {
         followThePath = GetComponent<FollowThePath>();
         //rigidbody2D = GetComponent<Rigidbody2D>();
+
+        rigidbody2D = GetComponent<Rigidbody2D>();
         
         Debug.Log("Mesh starts");
         
@@ -32,10 +34,21 @@ public class GhostChase : MonoBehaviour {
     {
         if(isChasing)
         {
+
             followThePath.enabled = false;
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
-         
-            transform.position += directionToPlayer * chaseSpeed * Time.deltaTime;
+            
+        // rigidBody2d velocity
+        //getComponenetRigidBody2D
+        // doesnt tranform.positon
+
+
+            rigidbody2D.velocity = directionToPlayer * chaseSpeed ;
+            Debug.Log("Ghost Velocity: " + rigidbody2D.velocity);
+
+            //transform.position += directionToPlayer * chaseSpeed * Time.deltaTime;
+
+
             //Vector2 newPosition = rigidbody2D.position + directionToPlayer * chaseSpeed * Time.deltaTime;  
 
             //rigidbody2D.MovePosition(newPosition);
@@ -99,7 +112,7 @@ public class GhostChase : MonoBehaviour {
         int rayCount = 50;
         float angle = 0f;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 10f;
+        float viewDistance = 5f;
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
@@ -143,9 +156,6 @@ public class GhostChase : MonoBehaviour {
             angle -= angleIncrease;
         }
          
-
-        
-        
     }
 
     public void SetOrigin(Vector3 origin) {
