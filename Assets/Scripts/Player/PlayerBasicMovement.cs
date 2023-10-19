@@ -23,7 +23,7 @@ public class PlayerBasicMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GlobalVariables.getPlayerMovable())
+        if (GlobalVariables.GetPlayerMovable())
         {
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");

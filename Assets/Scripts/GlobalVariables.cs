@@ -8,13 +8,11 @@ public static class GlobalVariables
 {
     private static bool showMainMenu = true;
 
-    public static bool getShowMainMenu()
-    {
+    public static bool GetShowMainMenu() {
         return showMainMenu;
     }
 
-    public static void setShowMainMenu(bool status)
-    {
+    public static void SetShowMainMenu(bool status) {
         showMainMenu = status;
     }
 
@@ -25,34 +23,33 @@ public static class GlobalVariables
         "Level 2"
     };
 
-    public static bool existScene(string sceneName) {
+    public static bool ExistScene(string sceneName) {
         return scenes.Contains(sceneName);
     }
 
-    private static Dictionary<string, bool> levelStatus = new Dictionary<string, bool>(){
-        {"Level 0", true},
-        {"Level 1", false},
-        {"Level 2", false}
-    };
+    private static int highestLevel = 2;
 
-    public static bool getLevelStatus(string level) {
-        return levelStatus[level];
+    public static int GetHighestLevel() {
+        return highestLevel;
     }
 
-    public static void unlockLevel(string level) {
-        if (levelStatus.ContainsKey(level))
-        {
-            levelStatus[level] = true;
-        }
+    private static int highestReachedLevel = 0;
+
+    public static void SetHighestReachedLevel(int level) {
+        highestReachedLevel = level;
+    }
+
+    public static int GetHighestReachedLevel() {
+        return highestReachedLevel;
     }
 
     private static bool playerMovable = true;
 
-    public static bool getPlayerMovable() {
+    public static bool GetPlayerMovable() {
         return playerMovable;
     }
 
-    public static void setPlayerMovable(bool movable) {
+    public static void SetPlayerMovable(bool movable) {
         playerMovable = movable;
     }
 }

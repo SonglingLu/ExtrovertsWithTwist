@@ -12,12 +12,12 @@ public class MainMenuButtonControl : MonoBehaviour
     public void Play() {
         mainMenu.SetActive(false);
         levelSelection.SetActive(true);
-        GlobalVariables.setShowMainMenu(false);
+        GlobalVariables.SetShowMainMenu(false);
     }
 
     public void Back() {
         mainMenu.SetActive(true);
         levelSelection.SetActive(false);
-        GlobalVariables.setShowMainMenu(true);
+        GlobalVariables.SetShowMainMenu(true);
     }
 }

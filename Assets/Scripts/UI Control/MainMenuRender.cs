@@ -10,7 +10,7 @@ public class MainMenuRender : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bool showMainMenu = GlobalVariables.getShowMainMenu();
+        bool showMainMenu = GlobalVariables.GetShowMainMenu();
         mainMenu.SetActive(showMainMenu);
         levelSelection.SetActive(!showMainMenu);
     }

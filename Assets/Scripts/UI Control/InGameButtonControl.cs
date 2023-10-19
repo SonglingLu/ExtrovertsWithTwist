@@ -8,7 +8,7 @@ public class InGameButtonControl : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GlobalVariables.setPlayerMovable(true);
+        GlobalVariables.SetPlayerMovable(true);
     }
 
     public void BackToMainMenu()
