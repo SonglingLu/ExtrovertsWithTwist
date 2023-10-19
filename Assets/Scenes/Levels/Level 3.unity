@@ -3307,6 +3307,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5680889208988848120, guid: 0c9cc5c06a8a044319a083725d0404fe, type: 3}
   m_PrefabInstance: {fileID: 1352230174}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1355904060
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.174385
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6044755
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.022659583
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988821524994570908, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9097605181482155468, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
+      propertyPath: m_Name
+      value: FirebaseManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d3fbeee9e7f5495b85e70a6c5a70d0a, type: 3}
 --- !u!4 &1414534006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 276692942058629556, guid: 65623109eb9744a279c679df9eeda8ba, type: 3}
@@ -5518,3 +5575,4 @@ SceneRoots:
   - {fileID: 2099321951}
   - {fileID: 730169464173997799}
   - {fileID: 584536890894746471}
+  - {fileID: 1355904060}

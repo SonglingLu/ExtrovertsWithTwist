@@ -36,6 +36,7 @@ public class Door : MonoBehaviour
             // Debug.Log("you win");
             GlobalVariables.setPlayerMovable(false);
             GlobalVariables.unlockLevel(nextLevel);
+            StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(true));
             finshScreen.SetActive(true);
             win.SetActive(true);
 
