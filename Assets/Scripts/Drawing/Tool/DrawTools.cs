@@ -119,14 +119,14 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        GlobalVariables.setPlayerMovable(false);
+        GlobalVariables.SetPlayerMovable(false);
         StartLine();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         FinishLine();
-        GlobalVariables.setPlayerMovable(true);
+        GlobalVariables.SetPlayerMovable(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)

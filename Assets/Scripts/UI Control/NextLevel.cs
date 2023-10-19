@@ -7,26 +7,25 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
-    private string nextLevel;
+    private int level;
     private bool hasNext;
 
     // Start is called before the first frame update
     void Start()
     {
-        nextLevel = "Level " + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last()) + 1).ToString();
-        hasNext = GlobalVariables.existScene(nextLevel);
-        Debug.Log(GlobalVariables.getLevelStatus(nextLevel));
+        level = Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last());
+        hasNext = level < GlobalVariables.GetHighestLevel();
     }
 
     // Update is called once per frame
     void Update()
     {
-        gameObject.SetActive(hasNext && GlobalVariables.getLevelStatus(nextLevel));
+        gameObject.SetActive(hasNext && GlobalVariables.GetHighestReachedLevel() > level);
     }
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(nextLevel);
-        GlobalVariables.setPlayerMovable(true);
+        SceneManager.LoadScene("Level " + (level + 1).ToString());
+        GlobalVariables.SetPlayerMovable(true);
     }
 }

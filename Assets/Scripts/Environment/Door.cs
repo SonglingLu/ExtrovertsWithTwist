@@ -11,13 +11,11 @@ public class Door : MonoBehaviour
     public GameObject win;
     private bool isUnlocked = false;
 
-    private string level;
-    private string nextLevel;
+    private int level;
 
     private void Start()
     {
-        level = SceneManager.GetActiveScene().name;
-        nextLevel = "Level " + (Int32.Parse(level.Split(' ').Last()) + 1).ToString();
+        level = Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last());
     }
 
     // Method to open or close the door
@@ -34,9 +32,12 @@ public class Door : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && isUnlocked)
         {
             // Debug.Log("you win");
-            GlobalVariables.setPlayerMovable(false);
-            GlobalVariables.unlockLevel(nextLevel);
+            GlobalVariables.SetPlayerMovable(false);
+            if (GlobalVariables.GetHighestLevel() > level && GlobalVariables.GetHighestReachedLevel() <= level) {
+                GlobalVariables.SetHighestReachedLevel(level + 1);
+            }
             StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(true));
+
             finshScreen.SetActive(true);
             win.SetActive(true);
 
