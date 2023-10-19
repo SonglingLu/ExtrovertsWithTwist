@@ -40,7 +40,10 @@ public static class GlobalVariables
     }
 
     public static void unlockLevel(string level) {
-        levelStatus[level] = true;
+        if (levelStatus.ContainsKey(level))
+        {
+            levelStatus[level] = true;
+        }
     }
 
     private static bool playerMovable = true;

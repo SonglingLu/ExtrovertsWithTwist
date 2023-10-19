@@ -390,6 +390,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!1 &110129170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3470675735518555910, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+  m_PrefabInstance: {fileID: 2018857920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &181850465
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,11 +794,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592640461}
   m_CullTransparentMesh: 1
---- !u!1 &596542997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6288803198928416852, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
-  m_PrefabInstance: {fileID: 2018857920}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &814657051
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,7 +3549,7 @@ PrefabInstance:
     - target: {fileID: 4522711606897999292, guid: 80e87bdd8c6444634a8ace3462cb78b0, type: 3}
       propertyPath: win
       value: 
-      objectReference: {fileID: 596542997}
+      objectReference: {fileID: 110129170}
     - target: {fileID: 4522711606897999292, guid: 80e87bdd8c6444634a8ace3462cb78b0, type: 3}
       propertyPath: finshScreen
       value: 

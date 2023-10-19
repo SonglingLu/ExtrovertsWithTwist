@@ -15,6 +15,7 @@ public class NextLevel : MonoBehaviour
     {
         nextLevel = "Level " + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last()) + 1).ToString();
         hasNext = GlobalVariables.existScene(nextLevel);
+        Debug.Log(GlobalVariables.getLevelStatus(nextLevel));
     }
 
     // Update is called once per frame

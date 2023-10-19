@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,10 +12,12 @@ public class Door : MonoBehaviour
     private bool isUnlocked = false;
 
     private string level;
+    private string nextLevel;
 
     private void Start()
     {
         level = SceneManager.GetActiveScene().name;
+        nextLevel = "Level " + (Int32.Parse(level.Split(' ').Last()) + 1).ToString();
     }
 
     // Method to open or close the door
@@ -30,10 +34,11 @@ public class Door : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && isUnlocked)
         {
             // Debug.Log("you win");
+            GlobalVariables.setPlayerMovable(false);
+            GlobalVariables.unlockLevel(nextLevel);
             finshScreen.SetActive(true);
             win.SetActive(true);
-            GlobalVariables.setPlayerMovable(false);
-            GlobalVariables.unlockLevel(level);
+
         }
     }
 }
