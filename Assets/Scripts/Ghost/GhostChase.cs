@@ -7,7 +7,7 @@ public class GhostChase : MonoBehaviour {
     public Transform player;
     private float chaseSpeed = 4f;
     private bool isChasing = false;
-    private FollowThePath followThePath;
+    private GhostMovement ghostMovement;
     private Rigidbody2D rigidbody2D;
 
     public Transform visionConeSprite;
@@ -17,7 +17,7 @@ public class GhostChase : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        followThePath = GetComponent<FollowThePath>();
+        ghostMovement = GetComponent<GhostMovement>();
         //rigidbody2D = GetComponent<Rigidbody2D>();
         
     }
@@ -27,7 +27,7 @@ public class GhostChase : MonoBehaviour {
     {
         if(isChasing)
         {
-            followThePath.enabled = false;
+            ghostMovement.enabled = false;
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
          
             transform.position += directionToPlayer * chaseSpeed * Time.deltaTime;
@@ -42,7 +42,7 @@ public class GhostChase : MonoBehaviour {
         else
         {
             //rigidbody2D.velocity = Vector2.zero;
-            followThePath.enabled = true;
+            ghostMovement.enabled = true;
         }
         
     }
