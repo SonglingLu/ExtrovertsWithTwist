@@ -65,13 +65,12 @@ public class GhostMovement : MonoBehaviour
                 Chase();
                 wasChasing = true;
             } else {
-                if(wasChasing && FindAnyObjectByType<FirebaseManager>().currentGhostEscapes==0)
+                if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
                 {
                     wasChasing = false;
-                    FindAnyObjectByType<FirebaseManager>().currentGhostEscapes++;
-                    StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true));
+                   
+                    StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true,true));
 
-                    Debug.Log("Escape " + FindAnyObjectByType<FirebaseManager>().currentGhostEscapes);
                 }
                 Move();
             }

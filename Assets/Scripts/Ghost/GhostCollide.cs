@@ -28,9 +28,9 @@ public class GhostCollide : MonoBehaviour
             lose.SetActive(true);
             GlobalVariables.SetPlayerMovable(false);
            
-            FindAnyObjectByType<FirebaseManager>().currentGhostKills++;
-            StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true));
-            Debug.Log("Ghost Killed " + FindAnyObjectByType<FirebaseManager>().currentGhostKills);
+            FindAnyObjectByType<FirebaseManager>().playerKilled = true;
+            StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true,false));
+            Debug.Log("Ghost Killed player");
 
         }
     }
