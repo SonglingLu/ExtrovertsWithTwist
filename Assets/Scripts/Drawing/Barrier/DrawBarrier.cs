@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DrawBarrier : MonoBehaviour
 {
@@ -37,12 +38,12 @@ public class DrawBarrier : MonoBehaviour
         // check if button is on
         if (DrawBarrierToggle.isOn) {
             // Check for mouse button press to start drawing a line
-            if (Input.GetMouseButtonDown(0)) {
+            if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0)) {
                 CreateLine();
                 drawing = true;
             }
             // Check for mouse button hold to continue drawing the line
-            if (Input.GetMouseButton(0) && _lineLength < _maxLineLength) {
+            if (drawing && Input.GetMouseButton(0) && _lineLength < _maxLineLength) {
                 Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Check if the finger has moved far enough to add a new point to the line
                 if (Vector2.Distance(temFingerPos, FingerPositions[FingerPositions.Count - 1]) > 0.1f)
@@ -50,7 +51,7 @@ public class DrawBarrier : MonoBehaviour
                     UpdateLine(temFingerPos);
                 }
             }
-            if (drawing == true && Input.GetMouseButtonUp(0)) {
+            if (drawing && Input.GetMouseButtonUp(0)) {
                 edgeCollider.enabled = true;
                 DrawBarrierToggle.isOn = false;
                 drawing = false;

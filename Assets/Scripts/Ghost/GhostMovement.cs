@@ -8,10 +8,15 @@ public class GhostMovement : MonoBehaviour
     private float moveSpeed = 4f;
     private int waypointIndex = 0;
     private Vector3 lastPosition;
+
     private bool chase;
     private bool blindChase;
+    private bool wasChasing =  false;
 
-    public bool wasChasing =  false;
+    private GameObject distraction;
+    private bool distractionExist = false;
+    private bool distracted = false;
+    private float distractionRange = 6f;
 
     [SerializeField] private Transform pfFieldOfView;
     private FieldOfView fieldOfView;
@@ -37,24 +42,44 @@ public class GhostMovement : MonoBehaviour
     
     private void Update()
     {
-        if (chase || blindChase) {
-            Chase();
-            wasChasing = true;
-        } else {
-            if(wasChasing && FindAnyObjectByType<FirebaseManager>().currentGhostEscapes==0)
-            {
-                wasChasing = false;
-                FindAnyObjectByType<FirebaseManager>().currentGhostEscapes++;
-                StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true));
+        if (distractionExist) {
+            distracted = Vector2.Distance(distraction.transform.position, transform.position) <= distractionRange;
 
-                Debug.Log("Escape " + FindAnyObjectByType<FirebaseManager>().currentGhostEscapes);
+        } else {
+            distracted = false;
+        }
+
+        Vector3 moveDir;
+
+        if (distracted) {
+            if (Vector2.Distance(distraction.transform.position, transform.position) < 2f) {
+                moveDir = (distraction.transform.position - transform.position).normalized;
+            } else {
+                DistractChase();
+                moveDir = (transform.position - lastPosition).normalized;
             }
-            Move();
+        }
+        else {
+            if (chase || blindChase) {
+                Chase();
+                wasChasing = true;
+            } else {
+                if(wasChasing && FindAnyObjectByType<FirebaseManager>().currentGhostEscapes==0)
+                {
+                    wasChasing = false;
+                    FindAnyObjectByType<FirebaseManager>().currentGhostEscapes++;
+                    StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true));
+
+                    Debug.Log("Escape " + FindAnyObjectByType<FirebaseManager>().currentGhostEscapes);
+                }
+                Move();
+            }
+
+            moveDir = (transform.position - lastPosition).normalized;
         }
 
         fieldOfView.SetOrigin(transform.position);
-        if (transform.position != lastPosition) {
-            Vector3 moveDir = (transform.position - lastPosition).normalized;
+        if ((distracted && Vector2.Distance(distraction.transform.position, transform.position) < 0.02f) || transform.position != lastPosition) {
             fieldOfView.SetDirection(moveDir);
         }
  
@@ -92,6 +117,13 @@ public class GhostMovement : MonoBehaviour
         ghostRB.velocity = directionToPlayer * moveSpeed;
     }
 
+    private void DistractChase()
+    {
+        Vector3 directionToDistraction = (distraction.transform.position - transform.position).normalized;
+        
+        ghostRB.velocity = directionToDistraction * moveSpeed;
+    }
+
     public void SetChase(bool chase) {
         if (this.chase && !chase) {
             StartCoroutine(ChaseWhileBlind());
@@ -106,4 +138,11 @@ public class GhostMovement : MonoBehaviour
         blindChase = false;
     }
     
+    public void setNewDistraction(GameObject distraction) {
+        this.distraction = distraction;
+    }
+
+    public void setDistractionExist(bool distractionExist) {
+        this.distractionExist = distractionExist;
+    }
 }

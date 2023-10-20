@@ -1,35 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DistractionController : MonoBehaviour
 {
-    public GameObject squarePrefab;
-    public int maxSquaresExist = 1;
-    private int squareCount = 0;
-    private int clickTimes = 0;
-    private int maxClickTimes = 3;
+    public GameObject distractionPrefab;
+    private bool distractionExist = false;
+    private float distractionLifetime = 5.0f;
 
-    public float squareLifetime = 5.0f; // 正方形的生命周期（秒）
+    private Toggle DrawDistractionToggle;
 
-    void Update()
-    {
-        if (clickTimes< maxClickTimes && squareCount < maxSquaresExist && Input.GetMouseButtonDown(0))
-        {
+    [SerializeField] GameObject[] ghosts;
+
+    void Start() {
+        DrawDistractionToggle = gameObject.GetComponent<Toggle>();
+    }
+
+    void Update() {
+        if (!EventSystem.current.IsPointerOverGameObject() && DrawDistractionToggle.isOn && !distractionExist && Input.GetMouseButtonDown(0)) {
             Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             spawnPosition.z = 0;
-            GameObject newSquare = Instantiate(squarePrefab, spawnPosition, Quaternion.identity);
-            FindAnyObjectByType<ghost2>().objectToThrow = newSquare;
-            StartCoroutine(DestroySquareAfterTime(newSquare));
-            squareCount++;
-            clickTimes++;
+
+            GameObject newDistraction = Instantiate(distractionPrefab, spawnPosition, Quaternion.identity);
+
+            distractionExist = true;
+            DrawDistractionToggle.isOn = false;
+
+            for (int i = 0; i < ghosts.Length; i++) {
+                ghosts[i].GetComponent<GhostMovement>().setNewDistraction(newDistraction);
+                ghosts[i].GetComponent<GhostMovement>().setDistractionExist(distractionExist);
+            }
+                
+            //FindAnyObjectByType<ghost2>().objectToThrow = newDistraction;
+
+            StartCoroutine(DestroySquareAfterTime(newDistraction));
         }
     }
 
-    IEnumerator DestroySquareAfterTime(GameObject square)
+    IEnumerator DestroySquareAfterTime(GameObject newDistraction)
     {
-        yield return new WaitForSeconds(squareLifetime);
-        Destroy(square);
-        squareCount--;
+        yield return new WaitForSeconds(distractionLifetime);
+        Destroy(newDistraction);
+        distractionExist = false;
+
+        for (int i = 0; i < ghosts.Length; i++) {
+            ghosts[i].GetComponent<GhostMovement>().setDistractionExist(distractionExist);
+        }
     }
 }
