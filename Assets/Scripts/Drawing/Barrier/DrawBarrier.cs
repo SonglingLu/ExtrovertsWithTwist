@@ -38,7 +38,7 @@ public class DrawBarrier : MonoBehaviour
         // check if button is on
         if (DrawBarrierToggle.isOn) {
             // Check for mouse button press to start drawing a line
-            if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0)) {
+            if (!MouseOverUILayerObject.IsPointerOverUIObject() && Input.GetMouseButtonDown(0)) {
                 CreateLine();
                 drawing = true;
             }
@@ -122,4 +122,6 @@ public class DrawBarrier : MonoBehaviour
             return _maxLineLength;
         }
     }
+
+    
 }
