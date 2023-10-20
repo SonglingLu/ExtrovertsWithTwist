@@ -36,7 +36,7 @@ public class Door : MonoBehaviour
             if (GlobalVariables.GetHighestLevel() > level && GlobalVariables.GetHighestReachedLevel() <= level) {
                 GlobalVariables.SetHighestReachedLevel(level + 1);
             }
-            StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(true));
+            StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(true,false));
 
             FindAnyObjectByType<TutorialManager>().CloseTutorial();
             finshScreen.SetActive(true);

@@ -27,6 +27,11 @@ public class GhostCollide : MonoBehaviour
             finishScreen.SetActive(true);
             lose.SetActive(true);
             GlobalVariables.SetPlayerMovable(false);
+           
+            FindAnyObjectByType<FirebaseManager>().currentGhostKills++;
+            StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true));
+            Debug.Log("Ghost Killed " + FindAnyObjectByType<FirebaseManager>().currentGhostKills);
+
         }
     }
 }

@@ -12,7 +12,7 @@ public class LevelData
     public int completeCount;
     public int levelOpenedCount;
 
-    public int totalGhostTrigger;
+    public int totalGhostKills;
     public int totalGhostEscape;
 
 }
@@ -21,7 +21,7 @@ public class FirebaseManager : MonoBehaviour
 {
     public string projectID = "extrovertswithtwist-default-rtdb";
 
-    public int currentGhostTrigger=0;
+    public int currentGhostKills=0;
     public int currentGhostEscapes=0;
 
    
@@ -29,8 +29,7 @@ public class FirebaseManager : MonoBehaviour
     private void Start()
     {
 
-
-        StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false));
+        StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false,false));
 
     }
 
@@ -40,7 +39,7 @@ public class FirebaseManager : MonoBehaviour
         
     }
 
-    public IEnumerator postLevelAnalytics(bool levelCompleted)
+    public IEnumerator postLevelAnalytics(bool levelCompleted, bool updateGhostTriggersOnly)
     {
 
         
@@ -54,24 +53,29 @@ public class FirebaseManager : MonoBehaviour
                 Debug.Log("No data available for " + SceneManager.GetActiveScene().name);
          
                 LevelData updatedLevelData = new LevelData();
+                if(!updateGhostTriggersOnly)
 
-                if (levelCompleted)
                 {
-                    updatedLevelData.completeCount = 1;
+                    if (levelCompleted)
+                    {
+                        updatedLevelData.completeCount = 1;
+                    }
+                    else
+                    {
+                        updatedLevelData.completeCount = 0;
+                        updatedLevelData.levelOpenedCount = 1;
+
+                    }
                 }
-                else
-                {
-                    updatedLevelData.completeCount = 0;
-                    updatedLevelData.levelOpenedCount = 1;
-                    
-                }
-                updatedLevelData.totalGhostTrigger = currentGhostTrigger;
+               
+                updatedLevelData.totalGhostKills = currentGhostKills;
                 updatedLevelData.totalGhostEscape = currentGhostEscapes;
 
                 RestClient.Put("https://extrovertswithtwist-default-rtdb.firebaseio.com/Levels/" + "Level" + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last())).ToString() + ".json", updatedLevelData).Then(response =>
                 {
                     Debug.Log("Created new level data successfully");
                 });
+
             }
             else
             {
@@ -86,17 +90,24 @@ public class FirebaseManager : MonoBehaviour
 
                 updatedLevelData = levelData;
 
-                if (levelCompleted)
-                {
-                    updatedLevelData.completeCount = levelData.completeCount + 1;
-                    updatedLevelData.levelOpenedCount = levelData.levelOpenedCount;
-                }
-                else
-                {
-                    updatedLevelData.completeCount = levelData.completeCount;
-                    updatedLevelData.levelOpenedCount = levelData.levelOpenedCount + 1;
-                }
+                if(!updateGhostTriggersOnly)
 
+                {
+                    if (levelCompleted)
+                    {
+                        updatedLevelData.completeCount = levelData.completeCount + 1;
+                        updatedLevelData.levelOpenedCount = levelData.levelOpenedCount;
+                    }
+                    else
+                    {
+                        updatedLevelData.completeCount = levelData.completeCount;
+                        updatedLevelData.levelOpenedCount = levelData.levelOpenedCount + 1;
+                    }
+                }
+                
+
+                updatedLevelData.totalGhostKills = currentGhostKills + levelData.totalGhostKills;
+                updatedLevelData.totalGhostEscape = currentGhostEscapes + levelData.totalGhostEscape ;
 
                 RestClient.Put("https://extrovertswithtwist-default-rtdb.firebaseio.com/Levels/" + "Level" + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last())).ToString() + ".json", updatedLevelData).Then(response =>
                 {
