@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2795435172718641765}
   - component: {fileID: 1898207163696964420}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GLOVES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 5438148440702634301, guid: ccd0504d7c84c4aeba945b286809f359, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.96862745}
   m_FlipX: 0
@@ -179,13 +179,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1111059130365582997}
   - component: {fileID: 5685711054143662917}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DrawPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1111059130365582997
 Transform:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.8352941}
   m_FlipX: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 5762160308107971287}
   - component: {fileID: 2539450975153828279}
   - component: {fileID: 7449183333378169295}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DrawBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.65882355}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -44,11 +44,11 @@ TagManager:
   - name: Map
     uniqueID: 768063351
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Barrier
     uniqueID: 3632479217
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: UI
     uniqueID: 565709307
