@@ -3140,7 +3140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444316924372780887, guid: 0c9cc5c06a8a044319a083725d0404fe, type: 3}
       propertyPath: m_Name
-      value: Wall (35)
+      value: Wall (37)
       objectReference: {fileID: 0}
     - target: {fileID: 6444316924372780887, guid: 0c9cc5c06a8a044319a083725d0404fe, type: 3}
       propertyPath: m_Layer
