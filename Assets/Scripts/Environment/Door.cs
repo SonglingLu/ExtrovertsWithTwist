@@ -42,9 +42,11 @@ public class Door : MonoBehaviour
 
                 FindAnyObjectByType<TutorialManager>().CloseTutorial();
             }
+
             finshScreen.SetActive(true);
             win.SetActive(true);
 
+            FindAnyObjectByType<TutorialManager>().CloseTutorial();
         }
     }
 }
