@@ -12,6 +12,7 @@ public class GhostMovement : MonoBehaviour
     private bool chase;
     private bool blindChase;
     private bool wasChasing =  false;
+    private float chaseSpeed = 5f;
 
     private GameObject distraction;
     private bool distractionExist = false;
@@ -114,7 +115,7 @@ public class GhostMovement : MonoBehaviour
         Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
         
         //transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
-        ghostRB.velocity = directionToPlayer * moveSpeed;
+        ghostRB.velocity = directionToPlayer * chaseSpeed;
     }
 
     private void DistractChase()

@@ -9,7 +9,7 @@ public class PlayerBasicMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float speed = 4f;
-    private float rotationSpeed = 1f;
+    private float rotationSpeed = 1.5f;
 
     private Rigidbody2D playerRB;
     private Vector2 movement;
