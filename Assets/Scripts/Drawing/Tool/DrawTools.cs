@@ -90,10 +90,14 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0; // Set the z-coordinate to 0 to place the sprite in the 2D plane.
 
-
-            // Instantiate the sprite at the mouse position within the parent GameObject.
-            Instantiate(drawPoint, mousePosition, Quaternion.identity, toolParent.transform);
-            Instantiate(drawPoint, (mousePosition + lastPosition) / 2, Quaternion.identity, toolParent.transform);
+            Debug.Log(Vector3.Distance(mousePosition, lastPosition));
+            if (Vector3.Distance(mousePosition,lastPosition) > 0.03)
+            {
+                // Instantiate the sprite at the mouse position within the parent GameObject.
+                Instantiate(drawPoint, mousePosition, Quaternion.identity, toolParent.transform);
+                Instantiate(drawPoint, (mousePosition + lastPosition) / 2, Quaternion.identity, toolParent.transform);
+            }
+            
 
             yield return null;
 
