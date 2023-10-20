@@ -38,6 +38,7 @@ public class Door : MonoBehaviour
             }
             StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(true));
 
+            FindAnyObjectByType<TutorialManager>().CloseTutorial();
             finshScreen.SetActive(true);
             win.SetActive(true);
 
