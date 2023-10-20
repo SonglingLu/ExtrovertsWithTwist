@@ -9,12 +9,17 @@ public class TutorialManager : MonoBehaviour
     Toggle DrawToolToggle;
     bool firstToggle = true;
 
+    public GameObject BarrierTool;
+    Toggle BarrierToolToggle;
+    bool SecondToggle = true;
+
     int currentStep=0;
     public List<TutorialStep> steps = new List<TutorialStep>();
     // Start is called before the first frame update
     void Start()
     {
         DrawToolToggle = DrawTool.GetComponent<Toggle>();
+        BarrierToolToggle = BarrierTool.GetComponent<Toggle>();
     }
 
     // Update is called once per frame
@@ -24,6 +29,12 @@ public class TutorialManager : MonoBehaviour
         {
             LoadNextStep();
             firstToggle = false;
+        }
+        if (SecondToggle && BarrierToolToggle.isOn)
+        {
+            //LoadNextStep();
+            SecondToggle = false;
+
         }
     }
 
@@ -54,11 +65,23 @@ public class TutorialManager : MonoBehaviour
 
         }
 
+       
         
 
 
         
     }
+    public void CloseTutorial()
+    {
+        foreach (Substep step in steps[currentStep].listObjects)
+        {
+
+            step.obj.SetActive(!step.makeDisappear);
+
+
+        }
+    }
+
 }
 
 [System.Serializable]
