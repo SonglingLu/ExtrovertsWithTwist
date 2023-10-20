@@ -57,8 +57,6 @@ public class FieldOfView : MonoBehaviour
             RaycastHit2D raycastHitTarget = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, layerMaskTarget);
             if (raycastHitTarget.collider != null && Vector2.Distance(origin, raycastHitTarget.point) < Vector2.Distance(origin, vertex)) {
                 targetInView = true;
-               
-                
             }
 
             vertices[vertexIndex] = vertex;
@@ -81,6 +79,8 @@ public class FieldOfView : MonoBehaviour
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
+
+        mesh.RecalculateBounds();
     }
 
     public void SetOrigin(Vector3 origin) {
