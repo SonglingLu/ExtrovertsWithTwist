@@ -40,7 +40,7 @@ public class TutorialManager : MonoBehaviour
         
 
         currentStep++;
-        Debug.Log(currentStep);
+        // Debug.Log(currentStep);
         if (currentStep<steps.Count) {
 
             foreach (Substep step in steps[currentStep].listObjects)
