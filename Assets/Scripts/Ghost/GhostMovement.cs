@@ -11,6 +11,8 @@ public class GhostMovement : MonoBehaviour
     private bool chase;
     private bool blindChase;
 
+    public bool wasChasing =  false;
+
     [SerializeField] private Transform pfFieldOfView;
     private FieldOfView fieldOfView;
 
@@ -32,12 +34,21 @@ public class GhostMovement : MonoBehaviour
         chase = false;
         blindChase = false;
     }
-
+    
     private void Update()
     {
         if (chase || blindChase) {
             Chase();
+            wasChasing = true;
         } else {
+            if(wasChasing && FindAnyObjectByType<FirebaseManager>().currentGhostEscapes==0)
+            {
+                wasChasing = false;
+                FindAnyObjectByType<FirebaseManager>().currentGhostEscapes++;
+                StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true));
+
+                Debug.Log("Escape " + FindAnyObjectByType<FirebaseManager>().currentGhostEscapes);
+            }
             Move();
         }
 
