@@ -33,7 +33,7 @@ public static class GlobalVariables
         return highestLevel;
     }
 
-    private static int highestReachedLevel = 0;
+    private static int highestReachedLevel = 2;
 
     public static void SetHighestReachedLevel(int level) {
         highestReachedLevel = level;
