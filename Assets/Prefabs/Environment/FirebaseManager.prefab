@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e00cfb1903f467da0798c15da96561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerKilled: 0
   projectID: extrovertswithtwist
-  currentGhostTrigger: 0
-  currentGhostEscapes: 0
+  recordData: 0

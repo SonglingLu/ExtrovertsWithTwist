@@ -2116,6 +2116,10 @@ PrefabInstance:
       value: Draw Hole
       objectReference: {fileID: 0}
     - target: {fileID: 6602284905277612566, guid: 8f8c686f281ac49fe8cce705b88806ea, type: 3}
+      propertyPath: m_Group
+      value: 
+      objectReference: {fileID: 627198450199145389}
+    - target: {fileID: 6602284905277612566, guid: 8f8c686f281ac49fe8cce705b88806ea, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
