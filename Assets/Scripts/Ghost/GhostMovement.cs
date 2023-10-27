@@ -72,6 +72,17 @@ public class GhostMovement : MonoBehaviour
             if (IsPlayerCloaked) {
                 chase = false;
                 blindChase = false;
+            if (chase || blindChase) {
+                Chase();
+                wasChasing = true;
+            } else {
+                if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
+                {
+                    wasChasing = false;
+                   
+                    StartCoroutine( FindAnyObjectByType<FirebaseManager>().updateGhostAnalytics(true));
+
+                }
                 Move();
             } else {
                 if (chase || blindChase) {

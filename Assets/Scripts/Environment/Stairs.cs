@@ -21,10 +21,10 @@ public class Stairs : MonoBehaviour
             if (direction == "up")
             {
                 // You can perform actions here without blocking the player
-                playerTransport.MovePlayer(0, 29, 0);
+                FindObjectOfType<PlayerBasicMovement>().MovePlayer(0, 29, 0);
             }
             else {
-                playerTransport.MovePlayer(0, -31, 0);
+                FindObjectOfType<PlayerBasicMovement>().MovePlayer(0, -31, 0);
             }
 
         }

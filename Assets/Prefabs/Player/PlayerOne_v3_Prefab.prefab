@@ -787,9 +787,6 @@ PrefabInstance:
       addedObject: {fileID: 6756610015210369468}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 0f50591bb4512497a9747ba891091e9f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6632488448079361495}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 0f50591bb4512497a9747ba891091e9f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8401521029350925554}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 0f50591bb4512497a9747ba891091e9f, type: 3}
       insertIndex: -1
@@ -891,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a321fd3e74841f29539d986ddc4bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotateInDirection: 0
   maxFloor: 0
   minFloor: 0
 --- !u!114 &8401521029350925554
