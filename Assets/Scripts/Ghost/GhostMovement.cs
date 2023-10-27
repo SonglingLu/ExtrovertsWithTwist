@@ -72,21 +72,19 @@ public class GhostMovement : MonoBehaviour
             if (IsPlayerCloaked) {
                 chase = false;
                 blindChase = false;
-                Move();
+            if (chase || blindChase) {
+                Chase();
+                wasChasing = true;
             } else {
-                if (chase || blindChase) {
-                    Chase();
-                    wasChasing = true;
-                } else {
-                    if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
-                    {
-                        wasChasing = false;
-                    
-                        StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true,true));
+                if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
+                {
+                    wasChasing = false;
+                   
+                    StartCoroutine( FindAnyObjectByType<FirebaseManager>().updateGhostAnalytics(true));
 
-                    }
-                    Move();
                 }
+                Move();
+            } 
             }
 
             moveDir = (transform.position - lastPosition).normalized;
