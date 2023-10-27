@@ -84,20 +84,7 @@ public class GhostMovement : MonoBehaviour
 
                 }
                 Move();
-            } else {
-                if (chase || blindChase) {
-                    Chase();
-                    wasChasing = true;
-                } else {
-                    if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
-                    {
-                        wasChasing = false;
-                    
-                        StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true,true));
-
-                    }
-                    Move();
-                }
+            } 
             }
 
             moveDir = (transform.position - lastPosition).normalized;

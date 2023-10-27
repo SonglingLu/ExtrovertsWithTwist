@@ -15,8 +15,7 @@ public class Hole : MonoBehaviour
         // This method is called when a collision occurs with a non-trigger Collider
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Body"))
         {
-            // You can perform actions here without blocking the player
-            Debug.Log("Player entered the trigger zone.");
+            
            FindObjectOfType<PlayerBasicMovement>().MovePlayer(0, -30, 0);
         }
     }
@@ -26,7 +25,7 @@ public class Hole : MonoBehaviour
         // This method is called when the player exits the trigger zone
         if (other.gameObject.CompareTag("Body"))
         {
-            Debug.Log("Player exited the trigger zone.");
+           
         }
     }
 
