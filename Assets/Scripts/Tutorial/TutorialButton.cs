@@ -26,13 +26,20 @@ public class TutorialButton : MonoBehaviour
             if (door != null)
             {
                 door.Open();
+                Debug.Log(doorCheck);
                 if (!doorCheck)
                 {
                     TutorialManager myScriptInstance = FindObjectOfType<TutorialManager>();
                     if (myScriptInstance != null)
                     {
                         myScriptInstance.LoadNextStep();
+                        Debug.Log("Tutorial Manager found");
                     }
+                    else
+                    {
+                        Debug.Log("Tutorial Manager not found");
+                    }
+
                     doorCheck = true;
                 }
                 
