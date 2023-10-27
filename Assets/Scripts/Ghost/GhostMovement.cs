@@ -21,9 +21,6 @@ public class GhostMovement : MonoBehaviour
 
 
     private InvisibleMechanic invisibleMechanic;
-    private bool hasAlreadyLoggedCloakMessage = false;
-    private bool hasAlreadyLoggedUncloakMessage = false;
-
 
 
     [SerializeField] private Transform pfFieldOfView;
@@ -54,62 +51,6 @@ public class GhostMovement : MonoBehaviour
     {
         bool IsPlayerCloaked = invisibleMechanic.isCloaked;
 
-        if (IsPlayerCloaked){
-
-            if (!hasAlreadyLoggedCloakMessage){
-                Debug.Log("player cloaked (on ghost side)");
-                hasAlreadyLoggedCloakMessage = true;
-                hasAlreadyLoggedUncloakMessage = false;
-
-            }
-            
-
-            if (distractionExist) {
-                distracted = Vector2.Distance(distraction.transform.position, transform.position) <= distractionRange;
-
-            } else {
-                distracted = false;
-            }
-
-            Vector3 moveDir;
-
-            if (distracted) {
-                if (Vector2.Distance(distraction.transform.position, transform.position) < 2f) {
-                    moveDir = (distraction.transform.position - transform.position).normalized;
-                } else {
-                    DistractChase();
-                    moveDir = (transform.position - lastPosition).normalized;
-                    }
-            }
-            else{
-                    Move();
-                    moveDir = (transform.position - lastPosition).normalized;
-
-                }
-
-            //Move();
-            fieldOfView.SetOrigin(transform.position);
-            if ((distracted && Vector2.Distance(distraction.transform.position, transform.position) < 0.02f) || transform.position != lastPosition) {
-            fieldOfView.SetDirection(moveDir);
-            }
-            lastPosition = transform.position;
-            
-        }
-
-
-
-
-
-        else {
-
-            if (!hasAlreadyLoggedUncloakMessage) {
-
-                Debug.Log("player NOT cloaking anymore (on ghost side)");
-                hasAlreadyLoggedUncloakMessage = true;
-                hasAlreadyLoggedCloakMessage = false;
-
-            }
-
         if (distractionExist) {
             distracted = Vector2.Distance(distraction.transform.position, transform.position) <= distractionRange;
 
@@ -128,18 +69,24 @@ public class GhostMovement : MonoBehaviour
             }
         }
         else {
-            if (chase || blindChase) {
-                Chase();
-                wasChasing = true;
-            } else {
-                if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
-                {
-                    wasChasing = false;
-                   
-                    StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true,true));
-
-                }
+            if (IsPlayerCloaked) {
+                chase = false;
+                blindChase = false;
                 Move();
+            } else {
+                if (chase || blindChase) {
+                    Chase();
+                    wasChasing = true;
+                } else {
+                    if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
+                    {
+                        wasChasing = false;
+                    
+                        StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true,true));
+
+                    }
+                    Move();
+                }
             }
 
             moveDir = (transform.position - lastPosition).normalized;
@@ -149,9 +96,8 @@ public class GhostMovement : MonoBehaviour
         if ((distracted && Vector2.Distance(distraction.transform.position, transform.position) < 0.02f) || transform.position != lastPosition) {
             fieldOfView.SetDirection(moveDir);
         }
- 
+
         lastPosition = transform.position;
-        }
         
     }
 
