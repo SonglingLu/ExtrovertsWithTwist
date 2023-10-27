@@ -20,20 +20,21 @@ public static class GlobalVariables
         "Menu",
         "Level 0",
         "Level 1",
-        "Level 2"
+        "Level 2",
+        "Level 3"
     };
 
     public static bool ExistScene(string sceneName) {
         return scenes.Contains(sceneName);
     }
 
-    private static int highestLevel = 2;
+    private static int highestLevel = 3;
 
     public static int GetHighestLevel() {
         return highestLevel;
     }
 
-    private static int highestReachedLevel = 2;
+    private static int highestReachedLevel = 3;
 
     public static void SetHighestReachedLevel(int level) {
         highestReachedLevel = level;
