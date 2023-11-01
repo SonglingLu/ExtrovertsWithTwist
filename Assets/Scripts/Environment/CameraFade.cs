@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 
 public class CameraFade : MonoBehaviour
@@ -9,6 +10,34 @@ public class CameraFade : MonoBehaviour
     private Texture2D _texture;
     private bool _done = true;
     private float _time;
+
+    public float zoomAmount = 0.5f;
+    public float zoomDuration = .4f;
+
+    private float originalSize;
+
+    void Start()
+    {
+        originalSize = Camera.main.orthographicSize;
+    }
+    public void ZoomInOut()
+    {
+        StartCoroutine(ZoomCoroutine());
+    }
+
+    private IEnumerator ZoomCoroutine()
+    {
+        float elapsedTime = 0.0f;
+        while (elapsedTime < zoomDuration)
+        {
+            Camera.main.orthographicSize = Mathf.Lerp(originalSize, originalSize * zoomAmount, elapsedTime / zoomDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Camera.main.orthographicSize = originalSize;
+    }
+
 
     public void Reset()
     {

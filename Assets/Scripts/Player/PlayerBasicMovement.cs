@@ -15,6 +15,8 @@ public class PlayerBasicMovement : MonoBehaviour
     private Vector2 movement;
 
     public bool RotateInDirection = false;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +77,7 @@ public class PlayerBasicMovement : MonoBehaviour
 
 
 
-    private int currentFloor = 0;
+    public int currentFloor = 0;
     public int maxFloor;
     public int minFloor;
 
