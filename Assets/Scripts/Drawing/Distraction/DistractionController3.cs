@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DistractionController : MonoBehaviour
+public class DistractionController3 : MonoBehaviour
 {
     public GameObject distractionPrefab;
     private bool distractionExist = false;
@@ -16,32 +16,32 @@ public class DistractionController : MonoBehaviour
 
     Vector2[] roomMins = new Vector2[]
     {
-        new Vector2(-20.09f, -2.81f),
-        new Vector2(-14.64f, -1.44f),
-        new Vector2(-9.77f, -0.657f),
-        new Vector2(-8.749f, -0.846f),
-        new Vector2(-5.56f, -3.89f),
-        new Vector2(0.59f, -0.84f),
-        new Vector2(-1.519f, 3.942f),
-        new Vector2(-4.61f, 2.663f),
-        new Vector2(0.673f, 10.586f),
-        new Vector2(5.47f, 9.47f),
-        new Vector2(7.108f, 14.46f)
+        new Vector2(-21.38f,-2.53f),
+        new Vector2(-15.91f,-1.15f),
+        new Vector2(-2.22f,-2.27f),
+        new Vector2(-14.43f,-6.02f),
+        new Vector2(-12.219f,-6.029f),
+        new Vector2(-0.953f,-3.785f),
+        new Vector2(2.41f,-0.01f),
+        new Vector2(3.511f,-0.5f),
+
+        
+
+        
     };
 
     Vector2[] roomMaxs = new Vector2[]
     {
-        new Vector2(-14.71f, 2.79f),
-        new Vector2(-9.83f, 1.36f),
-        new Vector2(-8.806f, 0.574f),
-        new Vector2(0.625f, 0.754f),
-        new Vector2(-3.74f, -0.94f),
-        new Vector2(2.607f, 10.562f),
-        new Vector2(0.623f, 5.889f),
-        new Vector2(-1.564f, 7.1f),
-        new Vector2(5.371f, 12.551f),
-        new Vector2(10.531f, 14.403f),
-        new Vector2(7.867f, 15.986f)
+        new Vector2(-16.029f,2.342f),
+        new Vector2(-2.346f,1.038f),
+        new Vector2(2.29f,2.005f),
+        new Vector2(-12.26f,-1.29f),
+        new Vector2(1.237f,-3.837f),
+        new Vector2(1.244f,-2.399f),
+        new Vector2(3.793f,0.31f),
+        new Vector2(3.784f,-0.127f),
+
+       
     };
 
 
@@ -105,7 +105,7 @@ public class DistractionController : MonoBehaviour
         if (spawnPosition.x >= roomMins[i].x && spawnPosition.x <= roomMaxs[i].x &&
             spawnPosition.y >= roomMins[i].y && spawnPosition.y <= roomMaxs[i].y)
         {
-            return true;
+            return true; 
         }
         
     }
