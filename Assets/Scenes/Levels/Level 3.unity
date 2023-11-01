@@ -1041,6 +1041,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8570803382696949341, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: _maxLineLength
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8957450065647316170, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1065,10 +1069,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 146633717726639007, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3862503114598995408, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1061960938}
   m_SourcePrefab: {fileID: 100100000, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
 --- !u!1 &116464122 stripped
 GameObject:
@@ -7205,6 +7213,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5680889208988848120, guid: 0c9cc5c06a8a044319a083725d0404fe, type: 3}
   m_PrefabInstance: {fileID: 1057336973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1061960936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3862503114598995408, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+  m_PrefabInstance: {fileID: 116464121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1061960938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061960936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b709f76abb88478fb98dd145c12b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distractionPrefab: {fileID: 316890031773019433, guid: 933b3f724b744e84089519aa5410250f, type: 3}
+  ghosts:
+  - {fileID: 604189487}
 --- !u!1001 &1068879107
 PrefabInstance:
   m_ObjectHideFlags: 0
