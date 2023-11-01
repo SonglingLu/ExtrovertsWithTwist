@@ -5,23 +5,27 @@ using UnityEngine.UI;
 
 public class HoleController : MonoBehaviour
 {
-    private Toggle DrawHoleToggle;
+    [HideInInspector]
+    public Toggle DrawHoleToggle;
+
     public GameObject holePrefab;
     private bool holeExists = false;
     private float holeLifetime = 5.0f;
-
+    PlayerBasicMovement playerBasics;
+    public bool mouseOverHoleable = false;
 
     private void Start()
     {
 
         DrawHoleToggle = gameObject.GetComponent<Toggle>();
+        playerBasics = FindObjectOfType<PlayerBasicMovement>();
     }
 
 
 
     void Update()
     {
-        if (DrawHoleToggle.isOn && !holeExists && Input.GetMouseButtonDown(0) && !MouseOverUILayerObject.IsPointerOverUIObject())
+        if (DrawHoleToggle.isOn && !holeExists && Input.GetMouseButtonDown(0) && !MouseOverUILayerObject.IsPointerOverUIObject() && playerBasics.currentFloor != 0 && mouseOverHoleable)
         {
             Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             spawnPosition.z = 0;
