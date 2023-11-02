@@ -29,6 +29,7 @@ public class DrawBarrier : MonoBehaviour
         FingerPositions = new List<Vector2>();
 
         DrawBarrierToggle = gameObject.GetComponent<Toggle>();
+        //Debug.Log("DrawToggle" + DrawBarrierToggle.isOn);
 
         _lineLength = 0f;
     }
@@ -123,5 +124,4 @@ public class DrawBarrier : MonoBehaviour
         }
     }
 
-    
 }
