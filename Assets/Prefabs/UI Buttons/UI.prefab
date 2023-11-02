@@ -2020,9 +2020,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580f0288267f8ed4ba0c00708382a977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer:
-    serializedVersion: 2
+  layers:
+  - serializedVersion: 2
     m_Bits: 4096
+  - serializedVersion: 2
+    m_Bits: 2048
 --- !u!1001 &5009755899149739474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2152,7 +2154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b18b296f6f3b642bc93e867ade6db0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DrawHoleToggle: {fileID: 0}
   holePrefab: {fileID: 2605623919554619908, guid: 62a4408fa982447e3ba465c745db85ab, type: 3}
+  mouseOverHoleable: 0
 --- !u!224 &6264309767804379310 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1398779974395200892, guid: 8f8c686f281ac49fe8cce705b88806ea, type: 3}
