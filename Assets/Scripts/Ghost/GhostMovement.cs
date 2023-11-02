@@ -19,6 +19,10 @@ public class GhostMovement : MonoBehaviour
     private bool distracted = false;
     private float distractionRange = 6f;
 
+
+    private InvisibleMechanic invisibleMechanic;
+
+
     [SerializeField] private Transform pfFieldOfView;
     private FieldOfView fieldOfView;
 
@@ -39,10 +43,14 @@ public class GhostMovement : MonoBehaviour
 
         chase = false;
         blindChase = false;
+
+        invisibleMechanic = player.GetComponent<InvisibleMechanic>();
     }
     
     private void Update()
     {
+        bool IsPlayerCloaked = invisibleMechanic.isCloaked;
+
         if (distractionExist) {
             distracted = Vector2.Distance(distraction.transform.position, transform.position) <= distractionRange;
 
@@ -59,20 +67,23 @@ public class GhostMovement : MonoBehaviour
                 DistractChase();
                 moveDir = (transform.position - lastPosition).normalized;
             }
-        }
-        else {
-            if (chase || blindChase) {
-                Chase();
-                wasChasing = true;
-            } else {
-                if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled )
-                {
-                    wasChasing = false;
-                   
-                    StartCoroutine( FindAnyObjectByType<FirebaseManager>().postLevelAnalytics(false, true,true));
-
-                }
+        } else {
+            if (IsPlayerCloaked) {
+                chase = false;
+                blindChase = false;
                 Move();
+            } else {
+                if (chase || blindChase) {
+                    Chase();
+                    wasChasing = true;
+                } else {
+                    if(wasChasing && !FindAnyObjectByType<FirebaseManager>().playerKilled) {
+                        wasChasing = false;
+                   
+                        StartCoroutine( FindAnyObjectByType<FirebaseManager>().updateGhostAnalytics(true));
+                    }
+                    Move();
+                }
             }
 
             moveDir = (transform.position - lastPosition).normalized;
@@ -82,7 +93,7 @@ public class GhostMovement : MonoBehaviour
         if ((distracted && Vector2.Distance(distraction.transform.position, transform.position) < 0.02f) || transform.position != lastPosition) {
             fieldOfView.SetDirection(moveDir);
         }
- 
+
         lastPosition = transform.position;
         
     }
@@ -111,6 +122,9 @@ public class GhostMovement : MonoBehaviour
 
     private void Chase()
     {
+
+        //if(invisibleMechanic.isCloaked) return;
+
         Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
         
         //transform.position += directionToPlayer * moveSpeed * Time.deltaTime;

@@ -473,9 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905e9fdb1dd6825428b8eb00eda24a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squarePrefab: {fileID: 316890031773019433, guid: 933b3f724b744e84089519aa5410250f, type: 3}
-  maxSquaresExist: 1
-  squareLifetime: 5
+  distractionPrefab: {fileID: 316890031773019433, guid: 933b3f724b744e84089519aa5410250f, type: 3}
+  ghosts: []
 --- !u!4 &1305793670
 Transform:
   m_ObjectHideFlags: 0

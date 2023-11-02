@@ -51,6 +51,8 @@ MonoBehaviour:
     m_Bits: 256
   - serializedVersion: 2
     m_Bits: 2048
+  - serializedVersion: 2
+    m_Bits: 4096
   layerMaskTarget:
     serializedVersion: 2
     m_Bits: 512

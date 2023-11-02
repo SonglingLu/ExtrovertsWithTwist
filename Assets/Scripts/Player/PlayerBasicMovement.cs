@@ -9,11 +9,12 @@ public class PlayerBasicMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float speed = 4f;
-    private float rotationSpeed = 1.5f;
+    private float rotationSpeed = 2.5f;
 
     private Rigidbody2D playerRB;
     private Vector2 movement;
 
+    public bool RotateInDirection = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,19 @@ public class PlayerBasicMovement : MonoBehaviour
 
             playerRB.velocity = movement * speed;
             //playerRB.MovePosition(playerRB.position + movement * speed * Time.deltaTime);
+
+            if(RotateInDirection)
+            {
+                float angle = Mathf.Atan2(-movement.x, movement.y) * Mathf.Rad2Deg;
+
+                if (movement.magnitude != 0)
+                {
+
+                    float currentAngle = Mathf.LerpAngle(transform.eulerAngles.z, angle, Time.deltaTime * 5);
+                    playerRB.MoveRotation(currentAngle);
+                }
+            }
+           
 
             if (Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.Q))
             {
@@ -55,4 +69,39 @@ public class PlayerBasicMovement : MonoBehaviour
             }
         }
     }
+
+
+
+
+
+
+    private int currentFloor = 0;
+    public int maxFloor;
+    public int minFloor;
+
+    public void MovePlayer(int xDirection, int yDirection, int zDirection)
+    {
+        Camera.main.GetComponent<CameraFade>().RedoFade();
+        //prevent accidentally trigger up or down multiple times
+        if (yDirection > 0 && currentFloor == maxFloor || yDirection < 0 && currentFloor == minFloor)
+        {
+            return;
+        }
+        else
+        {
+            if (yDirection > 0)
+            {
+                currentFloor += 1;
+            }
+            else
+            {
+                currentFloor -= 1;
+            }
+            Vector3 newPosition = new Vector3(transform.position.x + xDirection, transform.position.y + yDirection, transform.position.z + zDirection);
+            transform.position = newPosition;
+        }
+
+    }
+
+
 }

@@ -7,6 +7,9 @@ TagManager:
   - Buttom
   - Button1
   - Button2
+  - Hole
+  - Body
+  - Ghost
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - Player
   - 
   - Barrier
-  - 
+  - Destructible Wall
   - 
   - 
   - 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -9,55 +10,68 @@ public class TutorialManager : MonoBehaviour
     Toggle DrawToolToggle;
     bool firstToggle = true;
 
-    public GameObject BarrierTool;
-    Toggle BarrierToolToggle;
-    bool SecondToggle = true;
+    //public GameObject BarrierTool;
+    //Toggle BarrierToolToggle;
+    //bool SecondToggle = true;
 
-    int currentStep=0;
+    public int currentStep=0;
     public List<TutorialStep> steps = new List<TutorialStep>();
     // Start is called before the first frame update
     void Start()
     {
-        DrawToolToggle = DrawTool.GetComponent<Toggle>();
-        BarrierToolToggle = BarrierTool.GetComponent<Toggle>();
+        if (SceneManager.GetActiveScene().name == "Level 0") {
+
+            DrawToolToggle = DrawTool.GetComponent<Toggle>();
+            //BarrierToolToggle = BarrierTool.GetComponent<Toggle>();
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (firstToggle && DrawToolToggle.isOn)
+        if (SceneManager.GetActiveScene().name == "Level 0")
         {
-            LoadNextStep();
-            firstToggle = false;
-        }
-        if (SecondToggle && BarrierToolToggle.isOn)
-        {
-            //LoadNextStep();
-            SecondToggle = false;
 
+            if (firstToggle && DrawToolToggle.isOn)
+            {
+                LoadNextStep();
+                firstToggle = false;
+            }
+            //if (SecondToggle && BarrierToolToggle.isOn)
+            //{
+            //    //LoadNextStep();
+            //    SecondToggle = false;
+
+            //}
         }
+
     }
 
     public void LoadNextStep()
     {
-        
-        foreach (Substep step in steps[currentStep].listObjects)
+        if(currentStep != -1)
         {
-            
-            step.obj.SetActive(!step.makeDisappear);
-                
-            
+            foreach (Substep step in steps[currentStep].listObjects)
+            {
+
+                step.obj.SetActive(!step.makeDisappear);
+
+
+            }
+
+
         }
+        
+       
         
 
         currentStep++;
-        // Debug.Log(currentStep);
+         Debug.Log(currentStep);
         if (currentStep<steps.Count) {
 
             foreach (Substep step in steps[currentStep].listObjects)
             {
-
-
                 step.obj.SetActive(true);
 
             }
