@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class DrawBarrier : MonoBehaviour
 {
     public static DrawBarrier instance;
-    private float _lineLength;
-    private float _maxLineLength = 4f;
     private int currentPoint;
     public GameObject lineprefab; // The prefab for the line
     private float lineDuration = 5f; // The duration of the line
@@ -29,8 +28,6 @@ public class DrawBarrier : MonoBehaviour
         FingerPositions = new List<Vector2>();
 
         DrawBarrierToggle = gameObject.GetComponent<Toggle>();
-
-        _lineLength = 0f;
     }
 
     void Update()
@@ -38,12 +35,12 @@ public class DrawBarrier : MonoBehaviour
         // check if button is on
         if (DrawBarrierToggle.isOn) {
             // Check for mouse button press to start drawing a line
-            if (!MouseOverUILayerObject.IsPointerOverUIObject() && Input.GetMouseButtonDown(0)) {
+            if (!MouseOverLayerObject.IsPointerOverUIObject() && Input.GetMouseButtonDown(0)) {
                 CreateLine();
                 drawing = true;
             }
             // Check for mouse button hold to continue drawing the line
-            if (drawing && Input.GetMouseButton(0) && _lineLength < _maxLineLength) {
+            if (drawing && Input.GetMouseButton(0)) {
                 Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Check if the finger has moved far enough to add a new point to the line
                 if (Vector2.Distance(temFingerPos, FingerPositions[FingerPositions.Count - 1]) > 0.1f)
@@ -53,9 +50,13 @@ public class DrawBarrier : MonoBehaviour
             }
             if (drawing && Input.GetMouseButtonUp(0)) {
                 edgeCollider.enabled = true;
+
+                linerenderer.positionCount = 2;
+                linerenderer.SetPosition(0, new Vector3(FingerPositions[0].x, FingerPositions[0].y, -1));
+                linerenderer.SetPosition(1, new Vector3(FingerPositions.Last().x, FingerPositions.Last().y, -1));
+
                 DrawBarrierToggle.isOn = false;
                 drawing = false;
-                _lineLength = 0f;
 
                 // Start a coroutine to destroy the line after a specified duration
                 StartCoroutine(DestroyLineDelayed(currentLine, lineDuration));
@@ -101,8 +102,6 @@ public class DrawBarrier : MonoBehaviour
         linerenderer.SetPosition(linerenderer.positionCount - 1, new Vector3(newFingerPos.x, newFingerPos.y, -1));
         edgeCollider.points = FingerPositions.ToArray();
         currentPoint++;
-
-        _lineLength += Vector2.Distance(FingerPositions[currentPoint - 1], FingerPositions[currentPoint - 2]);
     }
 
     // Coroutine to destroy the line object after a specified delay
@@ -112,16 +111,4 @@ public class DrawBarrier : MonoBehaviour
         Destroy(line);
     }
 
-    public float lineLength{
-        get{
-            return _lineLength;
-        }
-    }
-    public float maxLineLength{
-        get{
-            return _maxLineLength;
-        }
-    }
-
-    
 }

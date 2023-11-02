@@ -25,7 +25,7 @@ public class HoleController : MonoBehaviour
 
     void Update()
     {
-        if (DrawHoleToggle.isOn && !holeExists && Input.GetMouseButtonDown(0) && !MouseOverUILayerObject.IsPointerOverUIObject() && playerBasics.currentFloor != 0 && mouseOverHoleable)
+        if (DrawHoleToggle.isOn && !holeExists && Input.GetMouseButtonDown(0) && !MouseOverLayerObject.IsPointerOverUIObject() && playerBasics.currentFloor != 0 && mouseOverHoleable)
         {
             Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             spawnPosition.z = 0;
