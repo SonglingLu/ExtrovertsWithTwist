@@ -110,5 +110,4 @@ public class DrawBarrier : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Destroy(line);
     }
-
 }

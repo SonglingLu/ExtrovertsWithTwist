@@ -19,7 +19,7 @@ public class GhostMovement : MonoBehaviour
     private bool distracted = false;
     private float distractionRange = 3f;
 
-
+    private InvisibleBrush invisibleBrush;
     private InvisibleMechanic invisibleMechanic;
 
 
@@ -27,6 +27,7 @@ public class GhostMovement : MonoBehaviour
     private FieldOfView fieldOfView;
 
     public GameObject player;
+    public GameObject DrawButtons;
 
     private void Start()
     {
@@ -44,12 +45,31 @@ public class GhostMovement : MonoBehaviour
         chase = false;
         blindChase = false;
 
-        invisibleMechanic = player.GetComponent<InvisibleMechanic>();
+        invisibleBrush = DrawButtons.GetComponentInChildren<InvisibleBrush>();
+
+        if (invisibleBrush != null) {
+            Debug.Log("Component successfully received!");
+        } else {
+            Debug.LogError("Component not found on the GameObject or its children!");
+        }
+
+        Transform invisibleBrushTransform = DrawButtons.transform.Find("Invisible Brush");
+        if (invisibleBrushTransform != null) {
+            invisibleBrush = invisibleBrushTransform.GetComponent<InvisibleBrush>();
+            if (invisibleBrush != null) {
+                Debug.Log("Component successfully received!");
+            } else {
+                Debug.LogError("InvisibleBrush component not found on 'Invisible Brush'!");
+            }
+        } else {
+            Debug.LogError("'Invisible Brush' not found!");
+        }
+
     }
     
     private void Update()
     {
-        bool IsPlayerCloaked = invisibleMechanic.isCloaked;
+        bool IsPlayerCloaked = invisibleBrush.isCloaked;
 
         if (distractionExist) {
             distracted = Vector2.Distance(distraction.transform.position, transform.position) <= distractionRange;
