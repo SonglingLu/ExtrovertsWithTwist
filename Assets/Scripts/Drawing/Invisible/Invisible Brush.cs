@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor.TerrainTools;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+
 
 public class InvisibleBrush : MonoBehaviour
 {
@@ -37,6 +39,9 @@ public class InvisibleBrush : MonoBehaviour
 
     private float someSmallValue  =0.005f;
 
+    private float inkCoeff = 0.5f;
+    public GameObject InkBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,7 +73,7 @@ public class InvisibleBrush : MonoBehaviour
 
         if (InvisibleBrushToggle.isOn)
         {
-            if (!MouseOverLayerObject.IsPointerOverUIObject() && Input.GetMouseButtonDown(0))
+            if (!MouseOverLayerObject.IsPointerOverUIObject() && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButtonDown(0))
             {
 
                 InitializeBrush();
@@ -90,11 +95,13 @@ public class InvisibleBrush : MonoBehaviour
                 drawing = true;
             }
 
-            if (drawing &&  Input.GetMouseButton(0) )
+            if (drawing && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButton(0) )
             {
                 Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 if (Vector2.Distance(temFingerPos, FingerPositions[FingerPositions.Count - 1]) > 0.1f)
                 {
+                    float distance = Vector2.Distance(temFingerPos, FingerPositions.Last());
+                    InkBar.GetComponent<InkManagement>().UseInk(distance * inkCoeff, 5);
                     UpdateBrush(temFingerPos);
                 }
 

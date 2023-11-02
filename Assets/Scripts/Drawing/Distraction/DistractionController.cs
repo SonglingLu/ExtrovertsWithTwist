@@ -14,16 +14,25 @@ public class DistractionController : MonoBehaviour
 
     [SerializeField] GameObject[] ghosts;
 
+    private float inkCoeff = 15f;
+    public GameObject InkBar;
+
     void Start() {
         DrawDistractionToggle = gameObject.GetComponent<Toggle>();
     }
 
     void Update() {
-        if (DrawDistractionToggle.isOn && !distractionExist && !MouseOverLayerObject.IsPointerOverUIObject() && MouseOverLayerObject.IsPointerInRoom() && Input.GetMouseButtonDown(0)) {
+        if (
+            DrawDistractionToggle.isOn && !distractionExist &&
+            !MouseOverLayerObject.IsPointerOverUIObject() && MouseOverLayerObject.IsPointerInRoom() &&
+            InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButtonDown(0)
+        ) {
             Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             spawnPosition.z = 0;
 
             GameObject newDistraction = Instantiate(distractionPrefab, spawnPosition, Quaternion.identity);
+
+            InkBar.GetComponent<InkManagement>().UseInk(inkCoeff, 2);
 
             distractionExist = true;
             DrawDistractionToggle.isOn = false;

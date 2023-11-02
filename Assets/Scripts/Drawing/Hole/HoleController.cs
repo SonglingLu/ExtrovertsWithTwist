@@ -14,6 +14,9 @@ public class HoleController : MonoBehaviour
     PlayerBasicMovement playerBasics;
     public bool mouseOverHoleable = false;
 
+    private float inkCoeff = 15f;
+    public GameObject InkBar;
+
     private void Start()
     {
 
@@ -25,12 +28,17 @@ public class HoleController : MonoBehaviour
 
     void Update()
     {
-        if (DrawHoleToggle.isOn && !holeExists && Input.GetMouseButtonDown(0) && !MouseOverLayerObject.IsPointerOverUIObject() && playerBasics.currentFloor != 0 && mouseOverHoleable)
-        {
+        if (
+            DrawHoleToggle.isOn && !holeExists && !MouseOverLayerObject.IsPointerOverUIObject() &&
+            playerBasics.currentFloor != 0 && mouseOverHoleable &&
+            InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButtonDown(0)
+        ) {
             Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             spawnPosition.z = 0;
 
             GameObject newHole = Instantiate(holePrefab, spawnPosition, Quaternion.identity);
+
+            InkBar.GetComponent<InkManagement>().UseInk(inkCoeff, 4);
 
             holeExists = true;
             DrawHoleToggle.isOn = false;

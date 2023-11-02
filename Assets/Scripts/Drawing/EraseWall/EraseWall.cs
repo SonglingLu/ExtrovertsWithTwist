@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class EraseWall : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class EraseWall : MonoBehaviour
     private List<Vector2> FingerPositions;
     private List<GameObject> ErasedWall;
     private float eraseDuration = 8f;
+
+    private float inkCoeff = 1f;
+    public GameObject InkBar;
 
     // Start is called before the first frame update
     void Start()
@@ -26,18 +30,20 @@ public class EraseWall : MonoBehaviour
          // check if button is on
         if (EraseWallToggle.isOn) {
             // Check for mouse button press to start drawing a line
-            if (Input.GetMouseButtonDown(0)) {
+            if (Input.GetMouseButtonDown(0) && InkBar.GetComponent<InkManagement>().GetInk() > 0) {
                 FingerPositions.Clear();
                 ErasedWall.Clear();
                 erasing = true;
 
-                AddFingerPos(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                FingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             }
             // Check for mouse button hold to continue drawing the line
-            if (erasing && Input.GetMouseButton(0)) {
+            if (erasing && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButton(0)) {
                 Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 if (Vector2.Distance(temFingerPos, FingerPositions[FingerPositions.Count - 1]) > 0.01f)
                 {
+                    float distance = Vector2.Distance(temFingerPos, FingerPositions.Last());
+                    InkBar.GetComponent<InkManagement>().UseInk(distance * inkCoeff, 3);
                     AddFingerPos(temFingerPos);
                 }
             }

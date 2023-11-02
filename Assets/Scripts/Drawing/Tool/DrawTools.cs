@@ -19,6 +19,9 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     Vector3 mousePosition,lastPosition;
     Coroutine spawnCoroutine;
 
+    private float inkCoeff = 5f;
+    public GameObject InkBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -123,14 +126,17 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        GlobalVariables.SetPlayerMovable(false);
-        StartLine();
+        if (InkBar.GetComponent<InkManagement>().GetInk() > 0) {
+            GlobalVariables.SetPlayerMovable(false);
+            StartLine();
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         FinishLine();
         GlobalVariables.SetPlayerMovable(true);
+        InkBar.GetComponent<InkManagement>().UseInk(inkCoeff, 0);
     }
 
     public void OnPointerExit(PointerEventData eventData)

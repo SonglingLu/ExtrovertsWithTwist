@@ -31,7 +31,7 @@ public class MouseOverLayerObject : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
 
-        List<int> invalidLayers = new List<int>() {0, 8, 9, 11, 12};
+        List<int> invalidLayers = new List<int>() {0, 8, 9, 11, 12, 14};
         bool valid = false;
         
         for (int i = 0; i < results.Count; i++)

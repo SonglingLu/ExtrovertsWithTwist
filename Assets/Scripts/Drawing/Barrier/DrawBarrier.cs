@@ -21,6 +21,9 @@ public class DrawBarrier : MonoBehaviour
     private Toggle DrawBarrierToggle;
     private bool drawing = false;
 
+    private float inkCoeff = 1f;
+    public GameObject InkBar;
+
     void Start()
     {
         instance = this;
@@ -35,20 +38,23 @@ public class DrawBarrier : MonoBehaviour
         // check if button is on
         if (DrawBarrierToggle.isOn) {
             // Check for mouse button press to start drawing a line
-            if (!MouseOverLayerObject.IsPointerOverUIObject() && Input.GetMouseButtonDown(0)) {
+            if (!MouseOverLayerObject.IsPointerOverUIObject() && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButtonDown(0)) {
                 CreateLine();
                 drawing = true;
             }
             // Check for mouse button hold to continue drawing the line
-            if (drawing && Input.GetMouseButton(0)) {
+            if (drawing && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButton(0)) {
                 Vector2 temFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 // Check if the finger has moved far enough to add a new point to the line
                 if (Vector2.Distance(temFingerPos, FingerPositions[FingerPositions.Count - 1]) > 0.1f)
                 {
+                    float distance = Vector2.Distance(temFingerPos, FingerPositions.Last());
+                    InkBar.GetComponent<InkManagement>().UseInk(distance * inkCoeff, 1);
                     UpdateLine(temFingerPos);
                 }
             }
             if (drawing && Input.GetMouseButtonUp(0)) {
+                edgeCollider.points = new Vector2[]{FingerPositions[0], FingerPositions.Last()};
                 edgeCollider.enabled = true;
 
                 linerenderer.positionCount = 2;
@@ -100,7 +106,6 @@ public class DrawBarrier : MonoBehaviour
         FingerPositions.Add(newFingerPos);
         linerenderer.positionCount++;
         linerenderer.SetPosition(linerenderer.positionCount - 1, new Vector3(newFingerPos.x, newFingerPos.y, -1));
-        edgeCollider.points = FingerPositions.ToArray();
         currentPoint++;
     }
 
