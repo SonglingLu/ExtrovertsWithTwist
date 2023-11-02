@@ -75,6 +75,7 @@ public class InvisibleBrush : MonoBehaviour
         {
             if (!MouseOverLayerObject.IsPointerOverUIObject() && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButtonDown(0))
             {
+                GlobalVariables.SetPlayerMovable(false);
 
                 InitializeBrush();
 
@@ -86,8 +87,8 @@ public class InvisibleBrush : MonoBehaviour
                 linerenderer.startWidth = lineWidth;
                 linerenderer.endWidth = lineWidth;
                 linerenderer.positionCount = 2;
-                linerenderer.SetPosition(0, new Vector3(FingerPositions[0].x, FingerPositions[0].y, -1));
-                linerenderer.SetPosition(1, new Vector3(FingerPositions[1].x, FingerPositions[1].y, -1));
+                linerenderer.SetPosition(0, new Vector3(FingerPositions[0].x, FingerPositions[0].y, -2));
+                linerenderer.SetPosition(1, new Vector3(FingerPositions[1].x, FingerPositions[1].y, -2));
 
                 currentPoint = 2;
 
@@ -120,12 +121,6 @@ public class InvisibleBrush : MonoBehaviour
                     if (count > 0)
                     {
                         overlapCount++;
-
-                        if (overlapCount > requiredOverlaps / 2 && !isCloaked)
-                        {
-                            StartCoroutine(ActivateCloaking());
-                        }
-
                     }
                 }
 
@@ -134,6 +129,11 @@ public class InvisibleBrush : MonoBehaviour
 
             if (drawing && Input.GetMouseButtonUp(0))
             {
+                if (overlapCount > requiredOverlaps / 2 && !isCloaked) {
+                    StartCoroutine(ActivateCloaking());
+                }
+
+                GlobalVariables.SetPlayerMovable(true);
                 overlapCount = 0;
                 InvisibleBrushToggle.isOn = false;
                 drawing = false;
@@ -159,7 +159,7 @@ public class InvisibleBrush : MonoBehaviour
                 Color originalColor = bodySpriteRenderer.color;
                 
                 // Change the color to indicate cloaking (e.g., make it transparent)
-                bodySpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f); // Adjust alpha as needed
+                bodySpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.4f); // Adjust alpha as needed
             }
         }
 
@@ -202,7 +202,7 @@ public class InvisibleBrush : MonoBehaviour
     {
         FingerPositions.Add(newFingerPos);
         linerenderer.positionCount++;
-        linerenderer.SetPosition(linerenderer.positionCount - 1, new Vector3(newFingerPos.x, newFingerPos.y, -1));
+        linerenderer.SetPosition(linerenderer.positionCount - 1, new Vector3(newFingerPos.x, newFingerPos.y, -2));
         currentPoint++;
 
         _lineLength += Vector2.Distance(FingerPositions[currentPoint - 1], FingerPositions[currentPoint - 2]);
