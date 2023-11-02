@@ -1082,6 +1082,30 @@ PrefabInstance:
       propertyPath: drawingPanel
       value: 
       objectReference: {fileID: 522579066}
+    - target: {fileID: 2281607233249632317, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281607233249632317, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281607233249632317, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281607233249632317, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281607233249632317, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281607233249632317, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -235
+      objectReference: {fileID: 0}
     - target: {fileID: 2655433100675564283, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1322,6 +1346,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7899128400930390632, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8331225142227253944, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1397,6 +1425,11 @@ GameObject:
 --- !u!1 &424965799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6288803198928416852, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+  m_PrefabInstance: {fileID: 424965795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &424965800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7899128400930390632, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
   m_PrefabInstance: {fileID: 424965795}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &432934856
@@ -2470,6 +2503,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1148373013}
     - target: {fileID: 8135712898659925538, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
+      propertyPath: InvisibleButton
+      value: 
+      objectReference: {fileID: 424965800}
+    - target: {fileID: 8135712898659925538, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 339970647}
@@ -2650,6 +2687,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1148373013}
+    - target: {fileID: 8135712898659925538, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
+      propertyPath: InvisibleButton
+      value: 
+      objectReference: {fileID: 424965800}
     - target: {fileID: 8135712898659925538, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 

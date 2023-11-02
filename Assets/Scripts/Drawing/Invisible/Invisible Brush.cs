@@ -51,20 +51,11 @@ public class InvisibleBrush : MonoBehaviour
             GameObject bodyObject = bodyTransform.gameObject;
             collider2D = bodyObject.GetComponent<Collider2D>();
         }
-        else 
-        {
-            Debug.LogError("Body child not found in Player");
-        }
 
 
         ghostMovement = FindObjectOfType<GhostMovement>();
-        if (ghostMovement == null)
-        {
-            Debug.LogError("GhostChase script not found in the scene. Please ensure a ghost with the GhostChase script is present.");
-        }
 
         InvisibleBrushToggle = gameObject.GetComponent<Toggle>();
-        //Debug.Log(InvisibleBrushToggle.isOn);
 
         _lineLength = 0f;
 
@@ -77,7 +68,7 @@ public class InvisibleBrush : MonoBehaviour
 
         if (InvisibleBrushToggle.isOn)
         {
-            if (!MouseOverUILayerObject.IsPointerOverUIObject() && Input.GetMouseButtonDown(0))
+            if (!MouseOverLayerObject.IsPointerOverUIObject() && Input.GetMouseButtonDown(0))
             {
 
                 InitializeBrush();
@@ -107,7 +98,6 @@ public class InvisibleBrush : MonoBehaviour
                     UpdateBrush(temFingerPos);
                 }
 
-                //Debug.Log("cursor clicked");
                 Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 if(Vector2.Distance(brush.transform.position, mousepos) > someSmallValue)
@@ -123,7 +113,7 @@ public class InvisibleBrush : MonoBehaviour
                     if (count > 0)
                     {
                         overlapCount++;
-                        //Debug.Log(overlapCount / requiredOverlaps);
+
                         if (overlapCount > requiredOverlaps / 2 && !isCloaked)
                         {
                             StartCoroutine(ActivateCloaking());
@@ -150,46 +140,35 @@ public class InvisibleBrush : MonoBehaviour
     private IEnumerator ActivateCloaking()
     {
         isCloaked = true;
-// Find the player's body object and get its SpriteRenderer component
-    GameObject playerObject = GameObject.Find("PlayerOne_v3_Prefab");
-    Transform bodyTransform = playerObject.transform.Find("Body");
-    if (bodyTransform != null)
-    {
-        SpriteRenderer bodySpriteRenderer = bodyTransform.GetComponent<SpriteRenderer>();
-        if (bodySpriteRenderer != null)
+        // Find the player's body object and get its SpriteRenderer component
+        GameObject playerObject = GameObject.Find("PlayerOne_v3_Prefab");
+        Transform bodyTransform = playerObject.transform.Find("Body");
+        if (bodyTransform != null)
         {
-            // Save the original color
-            Color originalColor = bodySpriteRenderer.color;
-            
-            // Change the color to indicate cloaking (e.g., make it transparent)
-            bodySpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f); // Adjust alpha as needed
+            SpriteRenderer bodySpriteRenderer = bodyTransform.GetComponent<SpriteRenderer>();
+            if (bodySpriteRenderer != null)
+            {
+                // Save the original color
+                Color originalColor = bodySpriteRenderer.color;
+                
+                // Change the color to indicate cloaking (e.g., make it transparent)
+                bodySpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f); // Adjust alpha as needed
+            }
         }
-        else
-        {
-            Debug.LogError("SpriteRenderer component not found on Body");
-        }
-    }
-    else
-    {
-        Debug.LogError("Body child not found in Player");
-    }
-
 
         yield return new WaitForSeconds(cloakDuration);
 
-       // Reset the color back to the original
-    if (bodyTransform != null)
-    {
-        SpriteRenderer bodySpriteRenderer = bodyTransform.GetComponent<SpriteRenderer>();
-        if (bodySpriteRenderer != null)
+        // Reset the color back to the original
+        if (bodyTransform != null)
         {
-            bodySpriteRenderer.color = new Color(bodySpriteRenderer.color.r, bodySpriteRenderer.color.g, bodySpriteRenderer.color.b, 1f); // Reset alpha to 1
+            SpriteRenderer bodySpriteRenderer = bodyTransform.GetComponent<SpriteRenderer>();
+            if (bodySpriteRenderer != null)
+            {
+                bodySpriteRenderer.color = new Color(bodySpriteRenderer.color.r, bodySpriteRenderer.color.g, bodySpriteRenderer.color.b, 1f); // Reset alpha to 1
+            }
         }
-    }
 
         isCloaked = false;
-
-        Debug.Log("Cloaking Deactivated");
 
     }
 

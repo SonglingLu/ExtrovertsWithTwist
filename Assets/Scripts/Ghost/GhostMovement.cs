@@ -27,7 +27,7 @@ public class GhostMovement : MonoBehaviour
     private FieldOfView fieldOfView;
 
     public GameObject player;
-    public GameObject DrawButtons;
+    public GameObject InvisibleButton;
 
     private void Start()
     {
@@ -45,24 +45,11 @@ public class GhostMovement : MonoBehaviour
         chase = false;
         blindChase = false;
 
-        invisibleBrush = DrawButtons.GetComponentInChildren<InvisibleBrush>();
+        invisibleBrush = InvisibleButton.GetComponentInChildren<InvisibleBrush>();
 
-        if (invisibleBrush != null) {
-            Debug.Log("Component successfully received!");
-        } else {
-            Debug.LogError("Component not found on the GameObject or its children!");
-        }
-
-        Transform invisibleBrushTransform = DrawButtons.transform.Find("Invisible Brush");
+        Transform invisibleBrushTransform = InvisibleButton.transform.Find("Invisible Brush");
         if (invisibleBrushTransform != null) {
             invisibleBrush = invisibleBrushTransform.GetComponent<InvisibleBrush>();
-            if (invisibleBrush != null) {
-                Debug.Log("Component successfully received!");
-            } else {
-                Debug.LogError("InvisibleBrush component not found on 'Invisible Brush'!");
-            }
-        } else {
-            Debug.LogError("'Invisible Brush' not found!");
         }
 
     }
