@@ -1,4 +1,0 @@
-repository "ExtrovertsWithTwist@hyun6538@cloud"
-  path "/"
-    br "/main"
-    co "/main"
