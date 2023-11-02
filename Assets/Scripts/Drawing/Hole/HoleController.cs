@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HoleController : MonoBehaviour
@@ -42,6 +43,19 @@ public class HoleController : MonoBehaviour
 
             holeExists = true;
             DrawHoleToggle.isOn = false;
+
+            if (SceneManager.GetActiveScene().name == "Level 4")
+            {
+                
+                if (FindAnyObjectByType<TutorialManager>() != null)
+                {
+                    
+
+                    FindAnyObjectByType<TutorialManager>().CloseTutorial();
+                }
+
+            }
+                
 
             StartCoroutine(DestroyHoleAfterTime(newHole));
         }
