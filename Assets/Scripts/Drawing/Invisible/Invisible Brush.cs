@@ -64,7 +64,7 @@ public class InvisibleBrush : MonoBehaviour
         }
 
         InvisibleBrushToggle = gameObject.GetComponent<Toggle>();
-        Debug.Log(InvisibleBrushToggle.isOn);
+        //Debug.Log(InvisibleBrushToggle.isOn);
 
         _lineLength = 0f;
 
@@ -123,7 +123,7 @@ public class InvisibleBrush : MonoBehaviour
                     if (count > 0)
                     {
                         overlapCount++;
-                        Debug.Log(overlapCount / requiredOverlaps);
+                        //Debug.Log(overlapCount / requiredOverlaps);
                         if (overlapCount > requiredOverlaps / 2 && !isCloaked)
                         {
                             StartCoroutine(ActivateCloaking());
