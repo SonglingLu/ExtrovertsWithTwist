@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EraseWall : MonoBehaviour
 {
-    [SerializeField] LayerMask layer;
+    [SerializeField] LayerMask[] layers;
     private Toggle EraseWallToggle;
     private bool erasing = false;
     private List<Vector2> FingerPositions;
@@ -54,7 +54,7 @@ public class EraseWall : MonoBehaviour
     private void AddFingerPos(Vector2 newFingerPos) {
         FingerPositions.Add(newFingerPos);
 
-        Collider2D[] wallColliders = Physics2D.OverlapCircleAll(newFingerPos, 0.1f, layer);
+        Collider2D[] wallColliders = Physics2D.OverlapCircleAll(newFingerPos, 0.1f, layers[0]);
 
         if (wallColliders != null) {
 
@@ -65,6 +65,18 @@ public class EraseWall : MonoBehaviour
                     wall.GetComponent<SpriteRenderer>().color = new Color32(255, 209, 0, 100);
                     ErasedWall.Add(wall);
                 }
+            }
+        }
+
+
+        Collider2D[] barrierColliders = Physics2D.OverlapCircleAll(newFingerPos, 0.1f, layers[1]);
+
+        if (barrierColliders != null) {
+
+            foreach (Collider2D barrierCollider in barrierColliders) {
+                GameObject barrier = barrierCollider.gameObject;
+
+                Destroy(barrier);
             }
         }
             

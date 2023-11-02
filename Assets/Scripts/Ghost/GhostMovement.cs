@@ -17,7 +17,7 @@ public class GhostMovement : MonoBehaviour
     private GameObject distraction;
     private bool distractionExist = false;
     private bool distracted = false;
-    private float distractionRange = 6f;
+    private float distractionRange = 3f;
 
     private InvisibleBrush invisibleBrush;
     private InvisibleMechanic invisibleMechanic;

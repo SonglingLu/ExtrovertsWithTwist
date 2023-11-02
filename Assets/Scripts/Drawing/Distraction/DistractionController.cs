@@ -19,7 +19,7 @@ public class DistractionController : MonoBehaviour
     }
 
     void Update() {
-        if (!MouseOverUILayerObject.IsPointerOverUIObject() && DrawDistractionToggle.isOn && !distractionExist && Input.GetMouseButtonDown(0)) {
+        if (DrawDistractionToggle.isOn && !distractionExist && !MouseOverLayerObject.IsPointerOverUIObject() && MouseOverLayerObject.IsPointerInRoom() && Input.GetMouseButtonDown(0)) {
             Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             spawnPosition.z = 0;
 

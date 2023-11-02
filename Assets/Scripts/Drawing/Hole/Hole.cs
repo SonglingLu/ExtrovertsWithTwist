@@ -17,6 +17,7 @@ public class Hole : MonoBehaviour
         {
             
            FindObjectOfType<PlayerBasicMovement>().MovePlayer(0, -30, 0);
+            Camera.main.GetComponent<CameraFade>().ZoomInOut();
         }
     }
 
