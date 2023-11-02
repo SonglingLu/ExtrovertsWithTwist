@@ -113,13 +113,17 @@ public class InvisibleBrush : MonoBehaviour
                     if (count > 0)
                     {
                         overlapCount++;
-
-                        if (overlapCount > requiredOverlaps / 2 && !isCloaked)
-                        {
-                            StartCoroutine(ActivateCloaking());
-                        }
-
                     }
+
+                    // if (Input.GetMouseButtonUp(0))
+                    // {
+                    //     if (overlapCount > requiredOverlaps / 2 && !isCloaked)
+                    //     {
+                    //         StartCoroutine(ActivateCloaking());
+                    //     }
+                        
+                    // }
+                    
                 }
 
             }
@@ -127,6 +131,11 @@ public class InvisibleBrush : MonoBehaviour
 
             if (drawing && Input.GetMouseButtonUp(0))
             {
+
+                if (overlapCount > requiredOverlaps / 2 && !isCloaked)
+                {
+                    StartCoroutine(ActivateCloaking());
+                }
                 overlapCount = 0;
                 InvisibleBrushToggle.isOn = false;
                 drawing = false;
@@ -152,7 +161,7 @@ public class InvisibleBrush : MonoBehaviour
                 Color originalColor = bodySpriteRenderer.color;
                 
                 // Change the color to indicate cloaking (e.g., make it transparent)
-                bodySpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f); // Adjust alpha as needed
+                bodySpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.1f); // Adjust alpha as needed
             }
         }
 
