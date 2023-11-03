@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerKilled: 0
   projectID: extrovertswithtwist
-  recordData: 0
+  recordData: 1
