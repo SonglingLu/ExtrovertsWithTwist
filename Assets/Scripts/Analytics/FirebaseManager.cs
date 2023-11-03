@@ -15,6 +15,17 @@ public class LevelData
     public int totalGhostKills;
     public int totalGhostEscape;
 
+    public int equipmentAverageInk;
+    public int barrierAverageInk;
+    public int distractionAverageInk;
+    public int eraseAverageInk;
+    public int holeAverageInk;
+    public int invisibleAverageInk;
+
+    public int averageTotalInkUsed;
+
+
+
 }
 
 public class FirebaseManager : MonoBehaviour
@@ -24,11 +35,12 @@ public class FirebaseManager : MonoBehaviour
 
     public string projectID = "extrovertswithtwist-default-rtdb";
     public bool recordData = true;
-   
+
+    InkManagement inkManager;
     // Start is called before the first frame update
     private void Start()
     {
-
+        inkManager = FindAnyObjectByType<InkManagement>();
         StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelCompletionAnalytics(false));
 
     }
@@ -73,6 +85,7 @@ public class FirebaseManager : MonoBehaviour
                     RestClient.Put("https://extrovertswithtwist-default-rtdb.firebaseio.com/Levels/" + "Level" + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last())).ToString() + ".json", updatedLevelData).Then(response =>
                     {
                         Debug.Log("Created new level data successfully");
+                     
                     });
 
                 }
@@ -105,6 +118,7 @@ public class FirebaseManager : MonoBehaviour
                     RestClient.Put("https://extrovertswithtwist-default-rtdb.firebaseio.com/Levels/" + "Level" + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last())).ToString() + ".json", updatedLevelData).Then(response =>
                     {
                         Debug.Log("Updated Level count successfully");
+                       
                     });
 
 
@@ -196,6 +210,67 @@ public class FirebaseManager : MonoBehaviour
 
             }).Catch(error => {
                 Debug.LogError("Error: " + error.Message);
+            }); 
+
+            yield break;
+
+
+        }
+    }
+
+    public IEnumerator updateInkAnalytics()
+    {
+        if (!inkDataPosted && inkManager!= null)
+        {
+            RestClient.Get("https://extrovertswithtwist-default-rtdb.firebaseio.com/Levels/" + "Level" + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last())).ToString() + ".json").Then(response => {
+
+                
+                    // Deserialize the JSON into a LevelData object
+                    LevelData levelData = JsonUtility.FromJson<LevelData>(response.Text);
+
+                    Debug.Log(SceneManager.GetActiveScene().name + " exists in database");
+
+                    LevelData updatedLevelData = new LevelData();
+
+
+
+                    updatedLevelData = levelData;
+
+             
+
+
+
+                updatedLevelData.equipmentAverageInk = (int)((inkManager.inkUsage[0] + (levelData.equipmentAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+
+                updatedLevelData.barrierAverageInk = (int)((inkManager.inkUsage[1] + (levelData.barrierAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+
+                updatedLevelData.distractionAverageInk = (int)((inkManager.inkUsage[2] + (levelData.distractionAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+
+                updatedLevelData.eraseAverageInk = (int)((inkManager.inkUsage[3] + (levelData.eraseAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+
+                updatedLevelData.holeAverageInk = (int)((inkManager.inkUsage[4] + (levelData.holeAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+
+                updatedLevelData.invisibleAverageInk = (int)((inkManager.inkUsage[5] + (levelData.invisibleAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+
+
+                updatedLevelData.averageTotalInkUsed = (int)((inkManager.ink + (levelData.averageTotalInkUsed * (levelData.levelOpenedCount -1))) / (levelData.levelOpenedCount));
+
+
+                    RestClient.Put("https://extrovertswithtwist-default-rtdb.firebaseio.com/Levels/" + "Level" + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last())).ToString() + ".json", updatedLevelData).Then(response =>
+                        {
+                            Debug.Log("Updated ink Data successfully");
+                            inkDataPosted = true;
+                        }).Catch(error => {
+                            Debug.LogError("Error: " + error.Message);
+                        });
+
+
+
+
+
+
+            }).Catch(error => {
+                Debug.LogError("Error: " + error.Message);
             }); ;
 
             yield break;
@@ -204,11 +279,8 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-
-       
-
-
-
+    bool inkDataPosted = false;
+    
 
 
 }

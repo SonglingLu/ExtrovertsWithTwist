@@ -37,7 +37,8 @@ public class Door : MonoBehaviour
                 GlobalVariables.SetHighestReachedLevel(level + 1);
             }
             StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().postLevelCompletionAnalytics(true));
-            if(FindAnyObjectByType<TutorialManager>()!=null)
+            StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().updateInkAnalytics());
+            if (FindAnyObjectByType<TutorialManager>()!=null)
             {
 
                 FindAnyObjectByType<TutorialManager>().CloseTutorial();

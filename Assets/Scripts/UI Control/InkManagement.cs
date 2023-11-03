@@ -6,16 +6,18 @@ using UnityEngine.UI;
 
 public class InkManagement : MonoBehaviour
 {
-    private float ink;
+    [HideInInspector]
+    public float ink;
+
     public Image inkBar;
 
-    private List<float> inkUsage;
+    public List<float> inkUsage;
 
     // Start is called before the first frame update
     void Start()
     {
         ink = 100f;
-        inkUsage = new List<float>() {0, 0, 0, 0, 0, 0};
+        inkUsage = new List<float>() {0, 0, 0, 0, 0, 0}; //Tool, Barrier, Distraction,erase,hole, invisible
     }
 
     // Update is called once per frame
@@ -39,4 +41,6 @@ public class InkManagement : MonoBehaviour
     public float GetInk() {
         return ink;
     }
+
+
 }
