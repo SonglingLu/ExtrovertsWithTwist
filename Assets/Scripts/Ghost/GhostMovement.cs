@@ -19,7 +19,7 @@ public class GhostMovement : MonoBehaviour
     private bool distracted = false;
     private float distractionRange = 4f;
 
-    private InvisibleBrush invisibleBrush;
+    public InvisibleBrush invisibleBrush;
     private InvisibleMechanic invisibleMechanic;
 
 
@@ -45,12 +45,7 @@ public class GhostMovement : MonoBehaviour
         chase = false;
         blindChase = false;
 
-        invisibleBrush = InvisibleButton.GetComponentInChildren<InvisibleBrush>();
-
-        Transform invisibleBrushTransform = InvisibleButton.transform.Find("Invisible Brush");
-        if (invisibleBrushTransform != null) {
-            invisibleBrush = invisibleBrushTransform.GetComponent<InvisibleBrush>();
-        }
+        
 
     }
     
