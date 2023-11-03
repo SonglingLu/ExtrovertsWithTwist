@@ -122,7 +122,29 @@ public class GhostColliderScript : MonoBehaviour
 
 
         }
+        else if (SceneManager.GetActiveScene().name == "Level 5")
+        {
+            TutorialManager myScriptInstance = FindObjectOfType<TutorialManager>();
+            if (collision.gameObject.CompareTag("Player") && !checkComplete)
+            {
+               
+                if (myScriptInstance != null)
+                {
+                    myScriptInstance.LoadNextStep();
+                    Destroy(gameObject);
+                }
 
+            }
+            else if(collision.gameObject.CompareTag("Player") && checkComplete)
+            {
+                
+                myScriptInstance.CloseTutorial();
+                Destroy(gameObject);
+            }
+
+
+
+        }
 
 
 
