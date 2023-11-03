@@ -31,6 +31,8 @@ public class GhostMovement : MonoBehaviour
 
     private void Start()
     {
+        invisibleBrush = InvisibleButton.GetComponent<InvisibleBrush>();
+
         if (waypoints.Length > 0)
         {
             transform.position = waypoints[waypointIndex].position;
@@ -44,7 +46,6 @@ public class GhostMovement : MonoBehaviour
 
         chase = false;
         blindChase = false;
-
         
 
     }

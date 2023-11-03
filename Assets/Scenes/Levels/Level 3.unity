@@ -2931,6 +2931,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 690739567}
     - target: {fileID: 8135712898659925538, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
+      propertyPath: invisibleBrush
+      value: 
+      objectReference: {fileID: 1782605815}
+    - target: {fileID: 8135712898659925538, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
       propertyPath: InvisibleButton
       value: 
       objectReference: {fileID: 116464125}
@@ -8721,6 +8725,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5680889208988848120, guid: 0c9cc5c06a8a044319a083725d0404fe, type: 3}
   m_PrefabInstance: {fileID: 1767012553}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1782605815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 14245729446441567, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+  m_PrefabInstance: {fileID: 116464121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116464125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9286af0cd53546e287e746c4df00826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1812883401
 GameObject:
   m_ObjectHideFlags: 0
