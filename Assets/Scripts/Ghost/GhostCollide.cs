@@ -30,6 +30,7 @@ public class GhostCollide : MonoBehaviour
            
             FindAnyObjectByType<FirebaseManager>().playerKilled = true;
             StartCoroutine( FindAnyObjectByType<FirebaseManager>().updateGhostAnalytics(false));
+            StartCoroutine(GameObject.FindAnyObjectByType<FirebaseManager>().updateInkAnalytics());
             Debug.Log("Ghost Killed player");
 
         }
