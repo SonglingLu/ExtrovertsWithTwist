@@ -15,14 +15,14 @@ public class LevelData
     public int totalGhostKills;
     public int totalGhostEscape;
 
-    public int equipmentAverageInk;
-    public int barrierAverageInk;
-    public int distractionAverageInk;
-    public int eraseAverageInk;
-    public int holeAverageInk;
-    public int invisibleAverageInk;
+    public double equipmentAverageInk;
+    public double barrierAverageInk;
+    public double distractionAverageInk;
+    public double eraseAverageInk;
+    public double holeAverageInk;
+    public double invisibleAverageInk;
 
-    public int averageTotalInkUsed;
+    public double averageTotalInkUsed;
 
 
 
@@ -240,20 +240,20 @@ public class FirebaseManager : MonoBehaviour
 
 
 
-                updatedLevelData.equipmentAverageInk = (int)((inkManager.inkUsage[0] + (levelData.equipmentAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+                updatedLevelData.equipmentAverageInk = System.Math.Round((inkManager.inkUsage[0] + (levelData.equipmentAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount),2);
 
-                updatedLevelData.barrierAverageInk = (int)((inkManager.inkUsage[1] + (levelData.barrierAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+                updatedLevelData.barrierAverageInk = System.Math.Round((inkManager.inkUsage[1] + (levelData.barrierAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount),2);
 
-                updatedLevelData.distractionAverageInk = (int)((inkManager.inkUsage[2] + (levelData.distractionAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+                updatedLevelData.distractionAverageInk = System.Math.Round((inkManager.inkUsage[2] + (levelData.distractionAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount),2);
 
-                updatedLevelData.eraseAverageInk = (int)((inkManager.inkUsage[3] + (levelData.eraseAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+                updatedLevelData.eraseAverageInk = System.Math.Round((inkManager.inkUsage[3] + (levelData.eraseAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount),2);
 
-                updatedLevelData.holeAverageInk = (int)((inkManager.inkUsage[4] + (levelData.holeAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+                updatedLevelData.holeAverageInk = System.Math.Round((inkManager.inkUsage[4] + (levelData.holeAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount),2);
 
-                updatedLevelData.invisibleAverageInk = (int)((inkManager.inkUsage[5] + (levelData.invisibleAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount));
+                updatedLevelData.invisibleAverageInk = System.Math.Round((inkManager.inkUsage[5] + (levelData.invisibleAverageInk * (levelData.levelOpenedCount - 1))) / (levelData.levelOpenedCount),2);
 
 
-                updatedLevelData.averageTotalInkUsed = (int)((inkManager.ink + (levelData.averageTotalInkUsed * (levelData.levelOpenedCount -1))) / (levelData.levelOpenedCount));
+                updatedLevelData.averageTotalInkUsed = System.Math.Round((inkManager.ink + (levelData.averageTotalInkUsed * (levelData.levelOpenedCount -1))) / (levelData.levelOpenedCount),2);
 
 
                     RestClient.Put("https://extrovertswithtwist-default-rtdb.firebaseio.com/Levels/" + "Level" + (Int32.Parse(SceneManager.GetActiveScene().name.Split(' ').Last())).ToString() + ".json", updatedLevelData).Then(response =>
