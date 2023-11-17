@@ -15,5 +15,6 @@ public class LevelSelection : MonoBehaviour
     public void SelectLevel() {
         SceneManager.LoadScene("Level " + level.ToString());
         GlobalVariables.SetPlayerMovable(true);
+        GlobalVariables.SetDrawing(false);
     }
 }

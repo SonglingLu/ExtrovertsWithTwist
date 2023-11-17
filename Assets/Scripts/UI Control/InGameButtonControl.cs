@@ -9,6 +9,7 @@ public class InGameButtonControl : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GlobalVariables.SetPlayerMovable(true);
+        GlobalVariables.SetDrawing(false);
     }
 
     public void BackToMainMenu()

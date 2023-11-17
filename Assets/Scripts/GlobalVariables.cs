@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,5 +55,14 @@ public static class GlobalVariables
 
     public static void SetPlayerMovable(bool movable) {
         playerMovable = movable;
+    }
+
+    public static Boolean drawing = false;
+    public static bool GetDrawing() {
+        return drawing;
+    }
+
+    public static void SetDrawing(bool isDrawing) {
+        drawing = isDrawing;
     }
 }

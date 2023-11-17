@@ -27,5 +27,6 @@ public class NextLevel : MonoBehaviour
     {
         SceneManager.LoadScene("Level " + (level + 1).ToString());
         GlobalVariables.SetPlayerMovable(true);
+        GlobalVariables.SetDrawing(false);
     }
 }

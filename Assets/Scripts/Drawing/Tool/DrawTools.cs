@@ -54,11 +54,13 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         toolParent = new GameObject();
         
         toolParent.transform.position = transform.position;
+        GlobalVariables.SetDrawing(true);
         canDraw = true;
     }
 
     void FinishLine()
     {
+        GlobalVariables.SetDrawing(false);
         canDraw = false;
         exitedWhileDrawing = false;
 

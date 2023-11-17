@@ -33,6 +33,7 @@ public class EraseWall : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && InkBar.GetComponent<InkManagement>().GetInk() > 0) {
                 FingerPositions.Clear();
                 ErasedWall.Clear();
+                GlobalVariables.SetDrawing(true);
                 erasing = true;
 
                 FingerPositions.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -51,6 +52,7 @@ public class EraseWall : MonoBehaviour
                 FinalizeErase(new List<GameObject>(ErasedWall));
 
                 EraseWallToggle.isOn = false;
+                GlobalVariables.SetDrawing(false);
                 erasing = false;
             }
             

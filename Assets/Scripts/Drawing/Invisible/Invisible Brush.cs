@@ -100,6 +100,7 @@ public class InvisibleBrush : MonoBehaviour
                 currentPoint = 2;
 
                 ////So Far, Creating Line
+                GlobalVariables.SetDrawing(true);
                 drawing = true;
             }
 
@@ -143,6 +144,7 @@ public class InvisibleBrush : MonoBehaviour
                 GlobalVariables.SetPlayerMovable(true);
                 overlapCount = 0;
                 InvisibleBrushToggle.isOn = false;
+                GlobalVariables.SetDrawing(false);
                 drawing = false;
                 _lineLength = 0f;
                 Destroy(currentLine);

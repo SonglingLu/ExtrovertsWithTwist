@@ -40,6 +40,7 @@ public class DrawBarrier : MonoBehaviour
             // Check for mouse button press to start drawing a line
             if (!MouseOverLayerObject.IsPointerOverUIObject() && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButtonDown(0)) {
                 CreateLine();
+                GlobalVariables.SetDrawing(true);
                 drawing = true;
             }
             // Check for mouse button hold to continue drawing the line
@@ -62,6 +63,7 @@ public class DrawBarrier : MonoBehaviour
                 linerenderer.SetPosition(1, new Vector3(FingerPositions.Last().x, FingerPositions.Last().y, -1));
 
                 DrawBarrierToggle.isOn = false;
+                GlobalVariables.SetDrawing(false);
                 drawing = false;
 
                 // Start a coroutine to destroy the line after a specified duration
