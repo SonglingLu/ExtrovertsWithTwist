@@ -64,13 +64,7 @@ public class InvisibleBrush : MonoBehaviour
         _lineLength = 0f;
 
 
-        GhostMovement[] objectsOfType = FindObjectsOfType<GhostMovement>();
-
-        // Iterate over the found objects.
-        foreach (GhostMovement obj in objectsOfType)
-        {
-            obj.invisibleBrush = this;
-        }
+        
 
     }
 
