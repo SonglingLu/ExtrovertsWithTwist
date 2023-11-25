@@ -258,7 +258,7 @@ namespace Rito.RadialMenu_v3
 
                 Vector2 vectorToMouse = mousePosition - buttonPosition;
                 Vector2 normalizedVector = vectorToMouse;
-                Debug.Log("Normalized Vector: " + normalizedVector);
+                // Debug.Log("Normalized Vector: " + normalizedVector);
 
                 // 스크린의 중앙을 (0, 0)으로 하는 마우스 좌표(-0.5 ~ 0.5 범위)
                 var mPos = new Vector2(normalizedVector.x , normalizedVector.y );
