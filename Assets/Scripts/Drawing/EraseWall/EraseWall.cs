@@ -53,6 +53,7 @@ public class EraseWall : MonoBehaviour
 
                 EraseWallToggle.isOn = false;
                 GlobalVariables.SetDrawing(false);
+                GlobalVariables.TriggerFinishDrawing();
                 erasing = false;
             }
             

@@ -5,14 +5,14 @@ using UnityEngine;
 public class DetectHover : MonoBehaviour
 {
     public SpriteRenderer sprite;
-    HoleController holeController;
+    public HoleController holeController;
 
     public float  defaultAlpha= 0.4f, hoverAlpha = 0.75f;
 
     private void Start()
     {
         
-        holeController = FindObjectOfType<HoleController>();
+      //  holeController = FindObjectOfType<HoleController>();
 
         Color currentColor = sprite.color;
 

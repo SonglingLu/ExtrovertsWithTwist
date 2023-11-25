@@ -64,6 +64,7 @@ public class DrawBarrier : MonoBehaviour
 
                 DrawBarrierToggle.isOn = false;
                 GlobalVariables.SetDrawing(false);
+                GlobalVariables.TriggerFinishDrawing();
                 drawing = false;
 
                 // Start a coroutine to destroy the line after a specified duration

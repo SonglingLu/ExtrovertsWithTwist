@@ -7,6 +7,19 @@ using UnityEngine;
 
 public static class GlobalVariables
 {
+    // Declare a delegate (if using non-generic pattern).
+    public delegate void MyEventHandler();
+
+    // Declare an event using the delegate.
+    public static event MyEventHandler FinishDrawing;
+
+    // This method will be called to trigger the event.
+    public static void TriggerFinishDrawing()
+    {
+        // Check if there are subscribers to the event.
+        FinishDrawing?.Invoke();
+    }
+
     private static bool showMainMenu = true;
 
     public static bool GetShowMainMenu() {

@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class DrawPanelControl : MonoBehaviour
 {
-    public GameObject drawingPanel;
+    private GameObject drawingPanel;
     private Toggle DrawToolToggle;
 
     void Start()
     {
+        drawingPanel = Camera.main.gameObject.transform.Find("DrawPanel").gameObject;
         DrawToolToggle = gameObject.GetComponent<Toggle>();
     }
 

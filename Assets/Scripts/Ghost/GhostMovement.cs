@@ -5,7 +5,7 @@ public class GhostMovement : MonoBehaviour
 {
     [SerializeField] private Transform[] waypoints;
     private Rigidbody2D ghostRB;
-    private float moveSpeed = 4f;
+    public float moveSpeed = 4f;
     private int waypointIndex = 0;
     private Vector3 lastPosition;
 
@@ -19,7 +19,7 @@ public class GhostMovement : MonoBehaviour
     private bool distracted = false;
     private float distractionRange = 4f;
 
-    public InvisibleBrush invisibleBrush;
+   
     private InvisibleMechanic invisibleMechanic;
 
 
@@ -27,7 +27,9 @@ public class GhostMovement : MonoBehaviour
     private FieldOfView fieldOfView;
 
     public GameObject player;
+
     public GameObject InvisibleButton;
+    private InvisibleBrush invisibleBrush;
 
     private void Start()
     {

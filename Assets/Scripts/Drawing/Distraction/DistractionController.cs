@@ -36,10 +36,11 @@ public class DistractionController : MonoBehaviour
 
             distractionExist = true;
             DrawDistractionToggle.isOn = false;
-
+            GlobalVariables.TriggerFinishDrawing();
             for (int i = 0; i < ghosts.Length; i++) {
-                ghosts[i].GetComponent<GhostMovement>().setNewDistraction(newDistraction);
-                ghosts[i].GetComponent<GhostMovement>().setDistractionExist(distractionExist);
+                GhostMovement gm = ghosts[i].GetComponent<GhostMovement>();
+                gm.setNewDistraction(newDistraction);
+                gm.setDistractionExist(distractionExist);
             }
                 
             //FindAnyObjectByType<ghost2>().objectToThrow = newDistraction;

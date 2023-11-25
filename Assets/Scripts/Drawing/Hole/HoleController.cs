@@ -44,6 +44,8 @@ public class HoleController : MonoBehaviour
             holeExists = true;
             DrawHoleToggle.isOn = false;
 
+            GlobalVariables.TriggerFinishDrawing();
+
             if (SceneManager.GetActiveScene().name == "Level 4")
             {
                 
@@ -59,6 +61,7 @@ public class HoleController : MonoBehaviour
 
             StartCoroutine(DestroyHoleAfterTime(newHole));
         }
+        
     }
 
     IEnumerator DestroyHoleAfterTime(GameObject newHole)
