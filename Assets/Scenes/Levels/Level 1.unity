@@ -1473,6 +1473,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7444721907028136819, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
   m_PrefabInstance: {fileID: 913972633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &913972635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2693644350315926528, guid: b4e1cf9b23ea7a544b1edc662b0e5a24, type: 3}
+  m_PrefabInstance: {fileID: 913972633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1018506732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3047,6 +3052,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7207590992462718068, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: ghosts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7207590992462718068, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
+      propertyPath: ghosts.Array.data[0]
+      value: 
+      objectReference: {fileID: 913972635}
     - target: {fileID: 8817054219324366405, guid: 6a8d66a1a52a1fa42b34894d0c1cea4c, type: 3}
       propertyPath: m_IsActive
       value: 0

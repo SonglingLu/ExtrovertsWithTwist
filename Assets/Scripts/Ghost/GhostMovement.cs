@@ -163,7 +163,5 @@ public class GhostMovement : MonoBehaviour
 
     public void setDistractionExist(bool distractionExist) {
         this.distractionExist = distractionExist;
-        Debug.Log(this.distractionExist);
-        //Debug.Log(this.distraction.gameObject.transform.position);
     }
 }
