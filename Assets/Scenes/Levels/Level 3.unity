@@ -5601,6 +5601,10 @@ PrefabInstance:
       propertyPath: ToolPlaceHolder
       value: 
       objectReference: {fileID: 1839287019}
+    - target: {fileID: 2539450975153828279, guid: 1295e29d48cbe4c149e033740a322b41, type: 3}
+      propertyPath: indicatorDrawPoint
+      value: 
+      objectReference: {fileID: 2238729969815056504, guid: f3c317aca872b4d22b1613d763ca8c2f, type: 3}
     - target: {fileID: 4273948073239561281, guid: 1295e29d48cbe4c149e033740a322b41, type: 3}
       propertyPath: m_Name
       value: DrawPanel

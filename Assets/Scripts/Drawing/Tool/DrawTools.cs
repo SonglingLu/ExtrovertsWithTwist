@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerEnterHandler
 {
-    Coroutine drawing;
-    public GameObject drawPoint, Player;
-    GameObject toolParent;
+    public GameObject indicatorDrawPoint, drawPoint, Player;
+    GameObject toolParent, indicatorToolParent;
     public SpriteRenderer ToolPlaceHolder;
     public GameObject DrawToolButton;
     private Toggle DrawToolToggle;
@@ -43,7 +42,9 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         }
        
     }
-
+    // Calculate the scaling factor
+    float scaleX;
+    float scaleY;
     void StartLine()
     {
         //if (drawing != null)
@@ -51,24 +52,35 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         //    StopCoroutine(drawing);
         //}
         //drawing = StartCoroutine(DrawLine());
+        scaleX = ToolPlaceHolder.bounds.size.x / transform.GetComponent<SpriteRenderer>().bounds.size.x;
+        scaleY = ToolPlaceHolder.bounds.size.y / transform.GetComponent<SpriteRenderer>().bounds.size.y;
 
-        toolParent = new GameObject();
-        
+        toolParent = new GameObject("DrawnEqipment");
         toolParent.transform.position = transform.position;
+
+        indicatorToolParent = new GameObject("IndicatorEqipment");
+
+        indicatorToolParent.transform.localScale = new Vector3(scaleX, scaleY, 0);
+        indicatorToolParent.transform.SetParent( ToolPlaceHolder.transform);
+      
+        indicatorToolParent.transform.localPosition = Vector3.zero;
+        indicatorToolParent.transform.rotation = Player.transform.rotation;
+
         GlobalVariables.SetDrawing(true);
         canDraw = true;
     }
 
     void FinishLine()
     {
+        GameObject.Destroy(indicatorToolParent);
         GlobalVariables.SetDrawing(false);
         canDraw = false;
         exitedWhileDrawing = false;
 
 
         // Calculate the scaling factor
-        float scaleX = ToolPlaceHolder.bounds.size.x / transform.GetComponent<SpriteRenderer>().bounds.size.x;
-        float scaleY = ToolPlaceHolder.bounds.size.y / transform.GetComponent<SpriteRenderer>().bounds.size.y;
+        scaleX = ToolPlaceHolder.bounds.size.x / transform.GetComponent<SpriteRenderer>().bounds.size.x;
+        scaleY = ToolPlaceHolder.bounds.size.y / transform.GetComponent<SpriteRenderer>().bounds.size.y;
 
 
         toolParent.transform.localScale = new Vector3(scaleX, scaleY, 0);
@@ -91,6 +103,7 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
     }
 
+    GameObject IndicatorPoint1,IndicatorPoint2,DrawPoint1,DrawPoint2;
     private IEnumerator SpawnSprites()
     {
         while (canDraw)
@@ -103,8 +116,18 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             if (Vector3.Distance(mousePosition,lastPosition) > 0.03)
             {
                 // Instantiate the sprite at the mouse position within the parent GameObject.
-                Instantiate(drawPoint, mousePosition, Quaternion.identity, toolParent.transform);
-                Instantiate(drawPoint, (mousePosition + lastPosition) / 2, Quaternion.identity, toolParent.transform);
+                DrawPoint1 = Instantiate(drawPoint, mousePosition, Quaternion.identity, toolParent.transform);
+                DrawPoint2 = Instantiate(drawPoint, (mousePosition + lastPosition) / 2, Quaternion.identity, toolParent.transform);
+
+                IndicatorPoint1 = Instantiate(indicatorDrawPoint, mousePosition, Quaternion.identity, indicatorToolParent.transform);
+                IndicatorPoint2 = Instantiate(indicatorDrawPoint, (mousePosition + lastPosition) / 2, Quaternion.identity, indicatorToolParent.transform);
+
+
+               // IndicatorPoint1.transform.localScale = IndicatorPoint2.transform.localScale = new Vector3(scaleX, scaleY, 0);
+
+                IndicatorPoint1.transform.localPosition = DrawPoint1.transform.localPosition;
+                IndicatorPoint2.transform.localPosition = DrawPoint2.transform.localPosition;
+
             }
             
 
