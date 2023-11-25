@@ -27,7 +27,7 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     {
         DrawToolToggle = DrawToolButton.GetComponent<Toggle>();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -41,6 +41,7 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             }
 
         }
+       
     }
 
     void StartLine()
@@ -83,8 +84,11 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
         toolParent.tag = "Player";
         toolParent.AddComponent<DestroySelf>();
-
+         
+        GlobalVariables.TriggerFinishDrawing();
+        
         StartCoroutine(DisableSelf());
+
     }
 
     private IEnumerator SpawnSprites()

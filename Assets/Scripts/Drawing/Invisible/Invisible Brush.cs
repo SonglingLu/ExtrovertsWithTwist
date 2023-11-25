@@ -142,8 +142,12 @@ public class InvisibleBrush : MonoBehaviour
                 drawing = false;
                 _lineLength = 0f;
                 Destroy(currentLine);
+               
+                GlobalVariables.TriggerFinishDrawing();
+                
             }
         }
+        
     }
 
 

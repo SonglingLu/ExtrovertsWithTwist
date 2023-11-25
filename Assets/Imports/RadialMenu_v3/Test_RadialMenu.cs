@@ -21,6 +21,14 @@ namespace Rito.RadialMenu_v3.Test
         private void Start()
         {
             radialMenu.SetPieceImageSprites(drawButtonToolImages);
+            GlobalVariables.FinishDrawing += HandleMyEvent;
+        }
+
+        private void HandleMyEvent()
+        {
+            
+            indicatorIcon.sprite = defaultIndicator;
+            
         }
 
         private void Update()
@@ -38,6 +46,7 @@ namespace Rito.RadialMenu_v3.Test
                 ProcessSelection();
                 cancelIndicatorIcon.gameObject.SetActive(false);
             }
+          
         }
 
         public void OnPointerUp(PointerEventData eventData)
