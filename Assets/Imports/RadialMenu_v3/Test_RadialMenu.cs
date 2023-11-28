@@ -26,8 +26,10 @@ namespace Rito.RadialMenu_v3.Test
 
         private void HandleMyEvent()
         {
-            
-            indicatorIcon.sprite = defaultIndicator;
+            if (indicatorIcon != null)
+            {
+                indicatorIcon.sprite = defaultIndicator;
+            }
             
         }
 

@@ -59,11 +59,12 @@ public class EraseWall : MonoBehaviour
             
         }
     }
-
+    Collider2D[] wallColliders;
+    Collider2D[] barrierColliders;
     private void AddFingerPos(Vector2 newFingerPos) {
         FingerPositions.Add(newFingerPos);
 
-        Collider2D[] wallColliders = Physics2D.OverlapCircleAll(newFingerPos, 0.1f, layers[0]);
+        wallColliders = Physics2D.OverlapCircleAll(newFingerPos, 0.1f, layers[0]);
 
         if (wallColliders != null) {
 
@@ -78,16 +79,16 @@ public class EraseWall : MonoBehaviour
         }
 
 
-        Collider2D[] barrierColliders = Physics2D.OverlapCircleAll(newFingerPos, 0.1f, layers[1]);
+        //barrierColliders = Physics2D.OverlapCircleAll(newFingerPos, 0.1f, layers[1]);
 
-        if (barrierColliders != null) {
+        //if (barrierColliders != null) {
 
-            foreach (Collider2D barrierCollider in barrierColliders) {
-                GameObject barrier = barrierCollider.gameObject;
+        //    foreach (Collider2D barrierCollider in barrierColliders) {
+        //        GameObject barrier = barrierCollider.gameObject;
 
-                Destroy(barrier);
-            }
-        }
+        //        Destroy(barrier);
+        //    }
+        //}
             
     }
 
