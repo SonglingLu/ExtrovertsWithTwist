@@ -37,20 +37,21 @@ public static class GlobalVariables
         "Level 2",
         "Level 3",
         "Level 4",
-        "Level 5"
+        "Level 5",
+        "Level 6"
     };
 
     public static bool ExistScene(string sceneName) {
         return scenes.Contains(sceneName);
     }
 
-    private static int highestLevel = 5;
+    private static int highestLevel = 6;
 
     public static int GetHighestLevel() {
         return highestLevel;
     }
 
-    private static int highestReachedLevel = 5;
+    private static int highestReachedLevel = 6;
 
     public static void SetHighestReachedLevel(int level) {
         highestReachedLevel = level;
