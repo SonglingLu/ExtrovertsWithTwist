@@ -44,14 +44,20 @@ public class PlayerBasicMovement : MonoBehaviour
 
             if(RotateInDirection)
             {
-                float angle = Mathf.Atan2(-movement.x, movement.y) * Mathf.Rad2Deg;
+                //float angle = Mathf.Atan2(-movement.x, movement.y) * Mathf.Rad2Deg;
 
-                if (movement.magnitude != 0)
-                {
+                //if (movement.magnitude != 0)
+                //{
 
-                    float currentAngle = Mathf.LerpAngle(transform.eulerAngles.z, angle, Time.deltaTime * 5);
-                    playerRB.MoveRotation(currentAngle);
-                }
+                //    float currentAngle = Mathf.LerpAngle(transform.eulerAngles.z, angle, Time.deltaTime * 5);
+                //    playerRB.MoveRotation(currentAngle);
+                //}
+                // Calculate torque based on the difference between the current rotation and the target rotation
+                float angleDifference = Vector2.SignedAngle(transform.up, playerRB.velocity.normalized);
+                float torque = .2f * angleDifference;
+
+                // Apply torque to the rigidbody
+                playerRB.AddTorque(torque);
             }
            
 

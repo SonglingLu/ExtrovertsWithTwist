@@ -96,22 +96,25 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         scaleX = ToolPlaceHolder.bounds.size.x / transform.GetComponent<SpriteRenderer>().bounds.size.x;
         scaleY = ToolPlaceHolder.bounds.size.y / transform.GetComponent<SpriteRenderer>().bounds.size.y;
 
-
-        toolParent.transform.localScale = new Vector3(scaleX, scaleY, 0);
-        toolParent.transform.parent = ToolPlaceHolder.transform;
-
-        toolParent.transform.localPosition = new Vector3(0, 0, 0);
-        toolParent.transform.rotation = Player.transform.rotation;
-
-        foreach (Transform child in toolParent.transform)
+        if(toolParent != null)
         {
-            child.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            toolParent.transform.localScale = new Vector3(scaleX, scaleY, 0);
+            toolParent.transform.parent = ToolPlaceHolder.transform;
+
+            toolParent.transform.localPosition = new Vector3(0, 0, 0);
+            toolParent.transform.rotation = Player.transform.rotation;
+
+            foreach (Transform child in toolParent.transform)
+            {
+                child.gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            }
+
+            toolParent.tag = "Player";
+            toolParent.AddComponent<DestroySelf>();
+
         }
 
-        toolParent.tag = "Player";
-        toolParent.AddComponent<DestroySelf>();
-         
-        
+
         StartCoroutine(DisableSelf());
 
     }
