@@ -40,7 +40,6 @@ public class DetectHover : MonoBehaviour
             sprite.color = currentColor;
         }
       
-       
         holeController.mouseOverHoleable = true;
 
     }

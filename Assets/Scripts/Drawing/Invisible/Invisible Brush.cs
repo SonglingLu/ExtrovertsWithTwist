@@ -44,7 +44,6 @@ public class InvisibleBrush : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         FingerPositions = new List<Vector2>();
 
         GameObject playerObject = GameObject.Find("PlayerOne_v3_Prefab");
@@ -71,7 +70,6 @@ public class InvisibleBrush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (InvisibleBrushToggle.isOn)
         {
             if (!MouseOverLayerObject.IsPointerOverUIObject() && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButtonDown(0))
@@ -97,6 +95,8 @@ public class InvisibleBrush : MonoBehaviour
                 GlobalVariables.SetDrawing(true);
                 drawing = true;
             }
+
+            
 
             if (drawing && InkBar.GetComponent<InkManagement>().GetInk() > 0 && Input.GetMouseButton(0) )
             {
