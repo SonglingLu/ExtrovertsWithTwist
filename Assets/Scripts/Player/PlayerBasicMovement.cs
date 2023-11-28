@@ -31,7 +31,14 @@ public class PlayerBasicMovement : MonoBehaviour
             verticalInput = Input.GetAxisRaw("Vertical");
 
             movement = new Vector2(horizontalInput, verticalInput).normalized;
-
+            if(movement.magnitude>0)
+            {
+                GetComponent<Animator>().SetBool("isWalking", true);
+            }
+            else
+            {
+                GetComponent<Animator>().SetBool("isWalking", false);
+            }
             playerRB.velocity = movement * speed;
             //playerRB.MovePosition(playerRB.position + movement * speed * Time.deltaTime);
 

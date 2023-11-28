@@ -25,6 +25,16 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     void Start()
     {
         DrawToolToggle = DrawToolButton.GetComponent<Toggle>();
+        GlobalVariables.FinishDrawing += DrawFinishEvent;
+    }
+    private void DrawFinishEvent()
+    {
+        if (DrawToolToggle.isOn == true)
+        {
+            StartCoroutine(DisableSelf());
+        }
+       
+
     }
 
     // Update is called once per frame
@@ -52,6 +62,10 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         //    StopCoroutine(drawing);
         //}
         //drawing = StartCoroutine(DrawLine());
+        if(toolParent != null)
+        {
+            Destroy(toolParent);
+        }
         scaleX = ToolPlaceHolder.bounds.size.x / transform.GetComponent<SpriteRenderer>().bounds.size.x;
         scaleY = ToolPlaceHolder.bounds.size.y / transform.GetComponent<SpriteRenderer>().bounds.size.y;
 
@@ -97,7 +111,6 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         toolParent.tag = "Player";
         toolParent.AddComponent<DestroySelf>();
          
-        GlobalVariables.TriggerFinishDrawing();
         
         StartCoroutine(DisableSelf());
 
@@ -148,6 +161,8 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
         gameObject.transform.parent.gameObject.SetActive(false);
         DrawToolToggle.isOn = false;
+
+        GlobalVariables.TriggerFinishDrawing();
 
     }
 
