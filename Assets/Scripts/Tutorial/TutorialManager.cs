@@ -54,8 +54,16 @@ public class TutorialManager : MonoBehaviour
         {
             foreach (Substep step in steps[currentStep].listObjects)
             {
+                if (step.obj != null)
+                {
+                    step.obj.SetActive(!step.makeDisappear);
 
-                step.obj.SetActive(!step.makeDisappear);
+                }
+                if (step.anim != null)
+                {
+                    step.anim.enabled = !step.makeDisappear;
+                }
+                
 
 
             }
@@ -72,7 +80,16 @@ public class TutorialManager : MonoBehaviour
 
             foreach (Substep step in steps[currentStep].listObjects)
             {
-                step.obj.SetActive(true);
+                if (step.obj != null)
+                {
+                    step.obj.SetActive(true);
+
+                }
+                if (step.anim != null)
+                {
+                    step.anim.enabled = true;
+                }
+
 
             }
 
@@ -90,7 +107,15 @@ public class TutorialManager : MonoBehaviour
         foreach (Substep step in steps[currentStep].listObjects)
         {
 
-            step.obj.SetActive(!step.makeDisappear);
+            if (step.obj != null)
+            {
+                step.obj.SetActive(!step.makeDisappear);
+
+            }
+            if (step.anim != null)
+            {
+                step.anim.enabled = !step.makeDisappear;
+            }
 
 
         }
@@ -108,5 +133,6 @@ public class TutorialStep
 public class Substep
 {
     public GameObject obj;
+    public Animator anim;
     public bool makeDisappear;
 }
