@@ -51,10 +51,11 @@ public class GhostMovement : MonoBehaviour
         
 
     }
-    
+
+    bool IsPlayerCloaked;
     private void Update()
     {
-        bool IsPlayerCloaked = invisibleBrush.isCloaked;
+        IsPlayerCloaked = invisibleBrush.isCloaked;
 
         if (distractionExist) {
             distracted = Vector2.Distance(distraction.transform.position, transform.position) <= distractionRange;
@@ -103,7 +104,7 @@ public class GhostMovement : MonoBehaviour
         
     }
 
-
+    float angle;
     private void Move()
     {
         if (waypointIndex < waypoints.Length)
@@ -122,6 +123,10 @@ public class GhostMovement : MonoBehaviour
                     waypointIndex = 0; // Loop back to the first waypoint
                 }
             }
+
+            angle = Vector2.SignedAngle(transform.right, movementDirection);
+            transform.Rotate(Vector3.forward, 20f * angle * Time.deltaTime);
+
         }
     }
 
@@ -134,6 +139,9 @@ public class GhostMovement : MonoBehaviour
         
         //transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
         ghostRB.velocity = directionToPlayer * chaseSpeed;
+       
+        angle = Vector2.SignedAngle(transform.right, directionToPlayer);
+        transform.Rotate(Vector3.forward, 20f * angle * Time.deltaTime);
     }
 
     private void DistractChase()
@@ -141,6 +149,9 @@ public class GhostMovement : MonoBehaviour
         Vector3 directionToDistraction = (distraction.transform.position - transform.position).normalized;
         
         ghostRB.velocity = directionToDistraction * moveSpeed;
+
+        angle = Vector2.SignedAngle(transform.right, directionToDistraction);
+        transform.Rotate(Vector3.forward, 20f * angle * Time.deltaTime);
     }
 
     public void SetChase(bool chase) {

@@ -26,8 +26,10 @@ namespace Rito.RadialMenu_v3.Test
 
         private void HandleMyEvent()
         {
-            
-            indicatorIcon.sprite = defaultIndicator;
+            if (indicatorIcon != null)
+            {
+                indicatorIcon.sprite = defaultIndicator;
+            }
             
         }
 
@@ -69,6 +71,7 @@ namespace Rito.RadialMenu_v3.Test
             int selected = radialMenu.Hide();
             if (selected != -1)
             {
+                GlobalVariables.TriggerFinishDrawing();
                 if (radialMenu._pieceInstance[selected].gameObject.GetComponent<Toggle>())
                 {
                     if (radialMenu._pieceInstance[selected].transform.Find("LockImage").gameObject.activeInHierarchy == false)

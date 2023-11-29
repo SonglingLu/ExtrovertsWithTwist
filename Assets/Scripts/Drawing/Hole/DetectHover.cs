@@ -31,16 +31,20 @@ public class DetectHover : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if(holeController.DrawHoleToggle.isOn)
+        if(holeController != null && holeController.DrawHoleToggle != null)
         {
-            Color currentColor = sprite.color;
+            if (holeController.DrawHoleToggle.isOn)
+            {
+                Color currentColor = sprite.color;
 
-            currentColor.a = hoverAlpha;
+                currentColor.a = hoverAlpha;
 
-            sprite.color = currentColor;
+                sprite.color = currentColor;
+            }
+
+            holeController.mouseOverHoleable = true;
         }
-      
-        holeController.mouseOverHoleable = true;
+        
 
     }
 
