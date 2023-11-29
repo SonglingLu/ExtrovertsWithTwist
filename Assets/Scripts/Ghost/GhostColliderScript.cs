@@ -20,7 +20,35 @@ public class GhostColliderScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (SceneManager.GetActiveScene().name == "Level 1")
+        if (SceneManager.GetActiveScene().name == "Level 0")
+        {
+            if (collision.gameObject.CompareTag("Ghost") && !checkComplete)
+            {
+                TutorialManager myScriptInstance = FindObjectOfType<TutorialManager>();
+                if (myScriptInstance != null)
+                {
+                    myScriptInstance.LoadNextStep();
+                    Destroy(gameObject);
+                }
+
+
+
+            }
+            else if (collision.gameObject.CompareTag("Player") && checkComplete)
+            {
+                TutorialManager myScriptInstance = FindObjectOfType<TutorialManager>();
+                if (myScriptInstance != null)
+                {
+                    myScriptInstance.LoadNextStep();
+                    Destroy(gameObject);
+                }
+
+
+            }
+
+        }
+
+        else if (SceneManager.GetActiveScene().name == "Level 1")
         {
             if (collision.gameObject.CompareTag("Ghost") && !checkComplete)
             {
