@@ -12,6 +12,10 @@ public class DrawBarrier : MonoBehaviour
     private int currentPoint;
     public GameObject lineprefab; // The prefab for the line
     private float lineDuration = 5f; // The duration of the line
+    public float blinkDuration = 2f;
+    public float blinkInterval = 0.5f;
+
+
     private GameObject currentLine; // The currently drawn line object
     private LineRenderer linerenderer; // LineRenderer component of the line object
     private EdgeCollider2D edgeCollider; // EdgeCollider2D component for collision
@@ -67,7 +71,7 @@ public class DrawBarrier : MonoBehaviour
                 drawing = false;
 
                 // Start a coroutine to destroy the line after a specified duration
-                StartCoroutine(DestroyLineDelayed(currentLine, lineDuration));
+                StartCoroutine(DestroyLineDelayed(currentLine, lineDuration, blinkDuration, blinkInterval));
             }
             
         }
@@ -112,9 +116,60 @@ public class DrawBarrier : MonoBehaviour
     }
 
     // Coroutine to destroy the line object after a specified delay
-    IEnumerator DestroyLineDelayed(GameObject line, float delay)
+    // IEnumerator DestroyLineDelayed(GameObject line, float delay)
+    // {
+    //     yield return new WaitForSeconds(delay);
+    //     Destroy(line);
+    // }
+IEnumerator DestroyLineDelayed(GameObject line, float lineDuration, float blinkDuration, float blinkInterval)
+{
+
+    // Wait for the initial delay minus the blink duration
+    yield return new WaitForSeconds(lineDuration - blinkDuration);
+    bool lineVisible = true;
+    float blinkTime = 0f;
+
+    while (blinkTime < blinkDuration)
     {
-        yield return new WaitForSeconds(delay);
-        Destroy(line);
+        line.GetComponent<LineRenderer>().enabled = lineVisible;
+        lineVisible = !lineVisible;
+
+        yield return new WaitForSeconds(blinkInterval);
+        blinkTime += blinkInterval;
     }
+    line.GetComponent<LineRenderer>().enabled = true;
+
+
+//     LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+//     if (lineRenderer == null)
+//     {
+//         Debug.LogError("LineRenderer component not found on the GameObject.");
+//         yield break;
+//     }
+
+//     // Blinking effect
+//     float endTime = Time.time + blinkDuration;
+//     bool isOpaque = true; // Tracks the current state of opacity
+
+
+// MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+// lineRenderer.GetPropertyBlock(propertyBlock);
+// Color color = lineRenderer.startColor; // Assuming start and end colors are the same
+
+
+// while (Time.time < endTime)
+// {
+//     color.a = isOpaque ? 0.0f : 1.0f;
+//     propertyBlock.SetColor("_Color", color);
+//     lineRenderer.SetPropertyBlock(propertyBlock);
+
+//     Debug.Log("LineRenderer Color: R=" + color.r + " G=" + color.g + " B=" + color.b + " A=" + color.a);
+
+
+//     isOpaque = !isOpaque;
+//     yield return new WaitForSeconds(blinkInterval);
+// }
+    // Destroy the line after blinking
+    Destroy(line);
+}
 }

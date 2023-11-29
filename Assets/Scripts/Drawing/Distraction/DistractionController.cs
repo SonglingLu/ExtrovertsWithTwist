@@ -10,6 +10,9 @@ public class DistractionController : MonoBehaviour
     private bool distractionExist = false;
     private float distractionLifetime = 5.0f;
 
+    private float blinkDuration = 1.0f;
+    private float blinkInterval = 0.1f;
+
     private Toggle DrawDistractionToggle;
 
     [SerializeField] GameObject[] ghosts;
@@ -44,13 +47,51 @@ public class DistractionController : MonoBehaviour
                 
             //FindAnyObjectByType<ghost2>().objectToThrow = newDistraction;
 
-            StartCoroutine(DestroySquareAfterTime(newDistraction));
+            StartCoroutine(DestroySquareAfterTime(newDistraction,blinkDuration,blinkInterval));
         }
     }
 
-    IEnumerator DestroySquareAfterTime(GameObject newDistraction)
+    // IEnumerator DestroySquareAfterTime(GameObject newDistraction,float blinkDuration, float blinkInterval)
+    // {
+    //     yield return new WaitForSeconds(distractionLifetime);
+    //     Destroy(newDistraction);
+    //     distractionExist = false;
+
+    //     for (int i = 0; i < ghosts.Length; i++) {
+    //         ghosts[i].GetComponent<GhostMovement>().setDistractionExist(distractionExist);
+    //     }
+    // }
+        IEnumerator DestroySquareAfterTime(GameObject newDistraction,float blinkDuration, float blinkInterval)
     {
-        yield return new WaitForSeconds(distractionLifetime);
+        yield return new WaitForSeconds(distractionLifetime - blinkDuration);
+
+        float blinkTime = 0f;
+        bool squareVisible = true;
+
+
+            SpriteRenderer distractionRenderer = newDistraction.GetComponent<SpriteRenderer>();
+    if (distractionRenderer == null)
+    {
+        Debug.LogError("SpriteRenderer not found on the distraction square.");
+        yield break;
+    }
+
+    // Blinking effect
+    while (blinkTime < blinkDuration)
+    {
+        // Toggle visibility
+        distractionRenderer.enabled = squareVisible;
+        squareVisible = !squareVisible;
+
+        // Wait for the blink interval
+        yield return new WaitForSeconds(blinkInterval);
+        blinkTime += blinkInterval;
+    }
+
+    // Ensure the square is visible before destroying
+    distractionRenderer.enabled = true;
+
+
         Destroy(newDistraction);
         distractionExist = false;
 
