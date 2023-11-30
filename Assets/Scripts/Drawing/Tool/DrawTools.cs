@@ -21,6 +21,8 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     private float inkCoeff = 5f;
     public GameObject InkBar;
 
+    [HideInInspector]
+    public GameObject RemoveButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -110,7 +112,8 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             }
 
             toolParent.tag = "Player";
-            toolParent.AddComponent<DestroySelf>();
+            toolParent.AddComponent<DestroySelf>().RemoveButton = RemoveButton;
+
 
         }
 
@@ -164,7 +167,7 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
         gameObject.transform.parent.gameObject.SetActive(false);
         DrawToolToggle.isOn = false;
-
+        RemoveButton.SetActive(true);
         GlobalVariables.TriggerFinishDrawing();
 
     }
@@ -203,5 +206,12 @@ public class DrawTool : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             exitedWhileDrawing = false;
             canDraw = true;
         }
+    }
+
+
+    public void RemoveEquipment()
+    {
+        Destroy(toolParent);
+        RemoveButton.SetActive(false);
     }
 }

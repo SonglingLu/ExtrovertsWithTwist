@@ -6,10 +6,10 @@ public class DestroySelf : MonoBehaviour
 {
 
     public float blinkDuration = 2f;
-    public float blinkInterval = 0.1f;
+    public float blinkInterval = 0.3f;
 
-    GameObject toolparent;
-
+    [HideInInspector]
+    public GameObject RemoveButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +45,9 @@ public class DestroySelf : MonoBehaviour
         }
 
         // Destroy the gameObject after blinking
+        RemoveButton.SetActive(false);
         Destroy(gameObject);
+
     }
    }
 
