@@ -65,13 +65,16 @@ namespace Rito.RadialMenu_v3.Test
 
 
 
-
         public void ProcessSelection()
         {
             int selected = radialMenu.Hide();
+               
             if (selected != -1)
             {
-                GlobalVariables.TriggerFinishDrawing();
+                if(selected != 0)
+                {
+                    GlobalVariables.TriggerFinishDrawing(); // trigger to disable the draw panel when any other tool is selected
+                }
                 if (radialMenu._pieceInstance[selected].gameObject.GetComponent<Toggle>())
                 {
                     if (radialMenu._pieceInstance[selected].transform.Find("LockImage").gameObject.activeInHierarchy == false)

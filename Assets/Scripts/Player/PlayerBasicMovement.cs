@@ -23,7 +23,7 @@ public class PlayerBasicMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (GlobalVariables.GetPlayerMovable())
         {
@@ -54,7 +54,7 @@ public class PlayerBasicMovement : MonoBehaviour
                 //}
                 // Calculate torque based on the difference between the current rotation and the target rotation
                 float angleDifference = Vector2.SignedAngle(transform.up, playerRB.velocity.normalized);
-                float torque = .2f * angleDifference;
+                float torque = .3f * angleDifference;
 
                 // Apply torque to the rigidbody
                 playerRB.AddTorque(torque);

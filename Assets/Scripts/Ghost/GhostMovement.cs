@@ -53,7 +53,7 @@ public class GhostMovement : MonoBehaviour
     }
 
     bool IsPlayerCloaked;
-    private void Update()
+    private void FixedUpdate()
     {
         IsPlayerCloaked = invisibleBrush.isCloaked;
 
