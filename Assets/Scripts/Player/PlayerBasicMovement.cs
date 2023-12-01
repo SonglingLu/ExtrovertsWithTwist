@@ -27,38 +27,6 @@ public class PlayerBasicMovement : MonoBehaviour
     {
         if (GlobalVariables.GetPlayerMovable())
         {
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-            verticalInput = Input.GetAxisRaw("Vertical");
-
-            movement = new Vector2(horizontalInput, verticalInput).normalized;
-            if(movement.magnitude>0)
-            {
-                GetComponent<Animator>().SetBool("isWalking", true);
-            }
-            else
-            {
-                GetComponent<Animator>().SetBool("isWalking", false);
-            }
-            playerRB.velocity = movement * speed;
-            //playerRB.MovePosition(playerRB.position + movement * speed * Time.deltaTime);
-
-            if(RotateInDirection)
-            {
-                //float angle = Mathf.Atan2(-movement.x, movement.y) * Mathf.Rad2Deg;
-
-                //if (movement.magnitude != 0)
-                //{
-
-                //    float currentAngle = Mathf.LerpAngle(transform.eulerAngles.z, angle, Time.deltaTime * 5);
-                //    playerRB.MoveRotation(currentAngle);
-                //}
-                // Calculate torque based on the difference between the current rotation and the target rotation
-                float angleDifference = Vector2.SignedAngle(transform.up, playerRB.velocity.normalized);
-                float torque = .3f * angleDifference;
-
-                // Apply torque to the rigidbody
-                playerRB.AddTorque(torque);
-            }
            
 
             if (Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.Q))
@@ -68,6 +36,42 @@ public class PlayerBasicMovement : MonoBehaviour
             else if (Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.E))
             {
                 playerRB.MoveRotation(playerRB.rotation + rotationSpeed);
+            }
+            else
+            {
+                horizontalInput = Input.GetAxisRaw("Horizontal");
+                verticalInput = Input.GetAxisRaw("Vertical");
+
+                movement = new Vector2(horizontalInput, verticalInput).normalized;
+                if (movement.magnitude > 0)
+                {
+                    GetComponent<Animator>().SetBool("isWalking", true);
+                }
+                else
+                {
+                    GetComponent<Animator>().SetBool("isWalking", false);
+                }
+                playerRB.velocity = movement * speed;
+                //playerRB.MovePosition(playerRB.position + movement * speed * Time.deltaTime);
+
+                if (RotateInDirection)
+                {
+                    //float angle = Mathf.Atan2(-movement.x, movement.y) * Mathf.Rad2Deg;
+
+                    //if (movement.magnitude != 0)
+                    //{
+
+                    //    float currentAngle = Mathf.LerpAngle(transform.eulerAngles.z, angle, Time.deltaTime * 5);
+                    //    playerRB.MoveRotation(currentAngle);
+                    //}
+                    // Calculate torque based on the difference between the current rotation and the target rotation
+                    float angleDifference = Vector2.SignedAngle(transform.up, playerRB.velocity.normalized);
+                    float torque = .3f * angleDifference;
+
+                    // Apply torque to the rigidbody
+                    playerRB.AddTorque(torque);
+                }
+
             }
 
         }
