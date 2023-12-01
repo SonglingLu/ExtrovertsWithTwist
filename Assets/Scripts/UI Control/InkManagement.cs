@@ -8,6 +8,8 @@ public class InkManagement : MonoBehaviour
 {
     [HideInInspector]
     public float ink;
+    public GameObject finish_panel;
+    public GameObject ink_panel;
 
     public Image inkBar;
 
@@ -36,6 +38,12 @@ public class InkManagement : MonoBehaviour
         }
         
         inkBar.fillAmount = ink / 100f;
+        if (ink <= 0)
+        {
+            finish_panel.SetActive(true);
+            ink_panel.SetActive(true);
+            GlobalVariables.SetPlayerMovable(false);
+        }
     }
 
     public float GetInk() {
